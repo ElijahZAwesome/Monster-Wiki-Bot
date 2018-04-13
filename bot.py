@@ -24,7 +24,7 @@ async def help(ctx):
     embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! Here are a list of the monsters documented:", color=0x00ff00)
     embed.add_field(name="Category1", value="Beholder\nTest", inline=True)
     embed.add_field(name="Category2", value="Kobold\nTest2", inline=True)
-    	embed.set_image(url="https://cdn.discordapp.com/avatars/434165055316295690/d14d16e9f2314a6538711b3d9ef16040.png")
+    embed.set_image(url="https://cdn.discordapp.com/avatars/434165055316295690/d14d16e9f2314a6538711b3d9ef16040.png")
     await client.send_message(ctx.message.channel, embed=embed)
      
 @client.command(pass_context = True)
