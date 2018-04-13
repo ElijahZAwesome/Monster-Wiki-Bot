@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix='!')
 async def test(ctx):
     await ctx.send('I heard you! {0}'.format(ctx.author))
 
-@client.on_ready()
+@client.event
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
