@@ -20,7 +20,7 @@ async def ping(ctx):
     await client.send_message(ctx.message.channel, 'Pong!')
     
 @client.command(pass_context = True)
-async def help(ctx):
+async def list(ctx):
     embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! Here are a list of the monsters documented:", color=0x00ff00)
     embed.add_field(name="Category1", value="Beholder\nTest", inline=True)
     embed.add_field(name="Category2", value="Kobold\nTest2", inline=True)
