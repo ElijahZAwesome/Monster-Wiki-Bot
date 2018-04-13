@@ -67,4 +67,5 @@ async def kobold(ctx):
         embed.add_field(name="Challenge", value="1/8 (25 XP)", inline=True)
         await client.send_message(ctx.message.author, embed=embed)
 
-client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')bbot.remove_command('help')
+client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
+bot.remove_command('help')
