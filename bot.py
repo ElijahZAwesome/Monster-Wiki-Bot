@@ -2,8 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
-bot.remove_command('help')
 client = commands.Bot(command_prefix='!')
+client.remove_command('help')
 
 @client.command()
 async def test(ctx):
