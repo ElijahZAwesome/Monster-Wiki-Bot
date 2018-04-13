@@ -20,7 +20,7 @@ async def ping(ctx):
     await client.send_message(ctx.message.channel, 'Pong!')
     
 @client.command(pass_context = True)
-async def list(ctx):
+async def (ctx):
     embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! Here are a list of the monsters documented:", color=0x00ff00)
     embed.add_field(name="Category1", value="Beholder\nTest", inline=True)
     embed.add_field(name="Category2", value="Kobold\nTest2", inline=True)
@@ -67,4 +67,4 @@ async def kobold(ctx):
         embed.add_field(name="Challenge", value="1/8 (25 XP)", inline=True)
         await client.send_message(ctx.message.author, embed=embed)
 
-client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
+client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')bbot.remove_command('help')
