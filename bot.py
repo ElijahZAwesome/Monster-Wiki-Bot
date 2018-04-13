@@ -26,7 +26,7 @@ async def help(ctx):
 @client.command(pass_context = True)
 async def beholder(ctx):
     embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
-    embed.set_image(url="./site/monsters/beholder/pic.png")
+    embed.set_image(url="http://monster-wiki-discord.herokuapp.com/monsters/beholder/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
         embed.add_field(name="Size/Type", value="Large Aberration", inline=True)
@@ -46,7 +46,7 @@ async def beholder(ctx):
 @client.command(pass_context = True)
 async def kobold(ctx):
     embed = discord.Embed(title="Kobold", description='"Kobolds are craven reptilian humanoids that commonly infest dungeons. They make up for their physical ineptitude with a cleverness for trap making."', color=0x00ff00)
-    embed.set_image(url="./site/monsters/kobold/pic.png")
+    embed.set_image(url="http://monster-wiki-discord.herokuapp.com/kobold/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
         embed.add_field(name="Armor Class", value="12", inline=True)
