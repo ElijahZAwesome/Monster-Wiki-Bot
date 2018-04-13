@@ -46,7 +46,7 @@ async def beholder(ctx):
 @client.command(pass_context = True)
 async def kobold(ctx):
     embed = discord.Embed(title="Kobold", description='"Kobolds are craven reptilian humanoids that commonly infest dungeons. They make up for their physical ineptitude with a cleverness for trap making."', color=0x00ff00)
-    embed.set_image(url="http://monster-wiki-discord.herokuapp.com/kobold/pic.png")
+    embed.set_image(url="http://monster-wiki-discord.herokuapp.com/monsters/kobold/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
         embed.add_field(name="Armor Class", value="12", inline=True)
