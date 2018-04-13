@@ -5,7 +5,7 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
 
-@client.command()
+@client.command(pass_context = True)
 async def test(ctx):
     await ctx.send('I heard you! {0}'.format(ctx.author))
 
