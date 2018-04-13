@@ -11,14 +11,15 @@ async def on_ready():
     print('------')
 
 @client.event
-async def on_message(message):
+@client.command(pass_context = True)
+async def on_message(ctx, message):
     if message.content.startswith('!ping'):
         await client.send_message(message.channel, 'Pong!')
     if message.content.startswith('!beholder'):
         embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
-        embed.set_image(url="https://media.discordapp.net/attachments/434149762296446977/434172885037219840/Cacodemon.jpg")
-        embed.add_field(name="Field1", value="hi", inline=False)
-        embed.add_field(name="Field2", value="hi2", inline=False)
+        embed.set_image(url="http://media.wizards.com/2014/images/dnd/newtodnd/Beholder_1E.jpg")
         await client.send_message(message.channel, embed=embed)
+        if(ctx.message.author.user.permissions_in(ctx.message.channel).administrator):
+            await client.send_message(ctx.message.author, embed=embed)
 
 client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
