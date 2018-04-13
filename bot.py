@@ -15,7 +15,8 @@ async def on_message(message):
     if message.content.startswith('!ping'):
         await client.send_message(message.channel, 'Pong!')
     if message.content.startswith('!beholder'):
-        embed = discord.Embed(title="Beholder", description="Description", color=0x00ff00)
+        embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
+        embed.set_image(url="https://media.discordapp.net/attachments/434149762296446977/434172885037219840/Cacodemon.jpg")
         embed.add_field(name="Field1", value="hi", inline=False)
         embed.add_field(name="Field2", value="hi2", inline=False)
         await client.send_message(message.channel, embed=embed)
