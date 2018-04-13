@@ -12,7 +12,7 @@ async def on_ready():
     print('------')
 
 @client.event
-@client.command(pass_context = True)
+@client.commands(pass_context = True)
 async def on_message(ctx, message):
     if message.content.startswith('!ping'):
         await client.send_message(message.channel, 'Pong!')
