@@ -17,14 +17,14 @@ async def on_ready():
 
 @client.command(pass_context = True)
 async def ping(ctx, message):
-    await client.send_message(message.channel, 'Pong!')
+    await client.send(message.channel, 'Pong!')
      
 @client.command(pass_context = True)
 async def beholder(ctx, message):
     embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
     embed.set_image(url="http://media.wizards.com/2014/images/dnd/newtodnd/Beholder_1E.jpg")
-    await client.send_message(message.channel, embed=embed)
+    await client.send(message.channel, embed=embed)
     if(ctx.message.author.user.permissions_in(ctx.message.channel).administrator):
-        await client.send_message(ctx.message.author, embed=embed)
+        await client.send(ctx.message.author, embed=embed)
 
 client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
