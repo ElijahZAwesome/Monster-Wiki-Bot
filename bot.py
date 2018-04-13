@@ -7,7 +7,7 @@ client.remove_command('help')
 
 @client.command(pass_context = True)
 async def test(ctx):
-    await ctx.send('I heard you! {0}'.format(ctx.author))
+    await client.send_message('I heard you, {0}!'.format(ctx.author))
 
 @client.event
 async def on_ready():
