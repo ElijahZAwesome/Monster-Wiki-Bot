@@ -2,6 +2,7 @@ import discord
 import asyncio
 from discord.ext import commands
 
+bot.remove_command('help')
 client = commands.Bot(command_prefix='!')
 
 @client.command()
@@ -68,4 +69,3 @@ async def kobold(ctx):
         await client.send_message(ctx.message.author, embed=embed)
 
 client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
-bot.remove_command('help')
