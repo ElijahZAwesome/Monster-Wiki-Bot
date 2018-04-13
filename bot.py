@@ -5,10 +5,6 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
 
-@client.command(pass_context = True)
-async def test(ctx):
-    await client.send_message(ctx.message.channel, 'I heard you, {0}!'.format(ctx.message.author))
-
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -22,16 +18,15 @@ async def ping(ctx):
     
 @client.command(pass_context = True)
 async def help(ctx):
-    embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! To find out more about a monster, just type '!' plus the name of the monster you want to look up. For example, '!beholder' will give you info about the Beholder respectively. Here are a list of the monsters documented:", color=0x00ff00)
-    embed.add_field(name="Category1", value="Beholder\nTest", inline=True)
-    embed.add_field(name="Category2", value="Kobold\nTest2", inline=True)
+    embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! Check out the website here: https://monster-wiki-discord.herokuapp.com/ \n To find out more about a monster, just type '!' plus the name of the monster you want to look up. For example, '!beholder' will give you info about the Beholder respectively. Here are a list of the monsters documented:", color=0x00ff00)
+    embed.add_field(name="5e", value="Beholder\nKobold", inline=True)
     embed.set_image(url="https://cdn.discordapp.com/avatars/434165055316295690/d14d16e9f2314a6538711b3d9ef16040.png")
     await client.send_message(ctx.message.channel, embed=embed)
      
 @client.command(pass_context = True)
 async def beholder(ctx):
     embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
-    embed.set_image(url="http://media.wizards.com/2014/images/dnd/newtodnd/Beholder_1E.jpg")
+    embed.set_image(url="./site/monsters/beholder/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
         embed.add_field(name="Size/Type", value="Large Aberration", inline=True)
@@ -51,7 +46,7 @@ async def beholder(ctx):
 @client.command(pass_context = True)
 async def kobold(ctx):
     embed = discord.Embed(title="Kobold", description='"Kobolds are craven reptilian humanoids that commonly infest dungeons. They make up for their physical ineptitude with a cleverness for trap making."', color=0x00ff00)
-    embed.set_image(url="https://www.worldanvil.com/media/cache/cover/uploads/images/47d2592d7c95acf9461ff843084e9f0f.png")
+    embed.set_image(url="./site/monsters/kobold/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
         embed.add_field(name="Armor Class", value="12", inline=True)
