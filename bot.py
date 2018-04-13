@@ -2,25 +2,24 @@ import discord
 import asyncio
 from discord.ext import commands
 
-client = discord.Client()
-bot = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='!')
 
-@bot.command()
+@client.command()
 async def test(ctx):
     await ctx.send('I heard you! {0}'.format(ctx.author))
 
-@client.event
+@client.on_ready()
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
     print('------')
 
-@bot.command(pass_context = True)
+@client.command(pass_context = True)
 async def ping(ctx, message):
     await client.send_message(message.channel, 'Pong!')
      
-@bot.command(pass_context = True)
+@client.command(pass_context = True)
 async def beholder(ctx, message):
     embed = discord.Embed(title="Beholder", description='"It floats before you, a bulbous body with a central, unblinking eye, and a large maw filled with daggerlike teeth. Smaller eyes, attached to wriggling stalks, sprout from the top of the orblike body."', color=0x00ff00)
     embed.set_image(url="http://media.wizards.com/2014/images/dnd/newtodnd/Beholder_1E.jpg")
