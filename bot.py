@@ -1,10 +1,14 @@
 import discord
 import asyncio
 from discord.ext import commands
+import os
 
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
-token = open("token.txt","r").readline()
+try:
+    token = os.environ['TOKEN']
+except KeyError:
+    token = open("token.txt","r").readline()
 
 @client.event
 async def on_ready():
