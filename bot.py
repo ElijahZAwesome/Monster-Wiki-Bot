@@ -4,6 +4,7 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix='!')
 client.remove_command('help')
+token = open("token.txt","r").readline()
 
 @client.event
 async def on_ready():
@@ -84,4 +85,4 @@ async def aarakocra(ctx):
         embed.add_field(name="Challenge", value="1/4 (50 XP)", inline=True)
         await client.send_message(ctx.message.author, embed=embed)
 
-client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
+client.run(token)
