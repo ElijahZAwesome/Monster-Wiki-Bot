@@ -9,6 +9,13 @@ try:
     token = os.environ['TOKEN']
 except KeyError:
     token = open("token.txt","r").readline()
+try:
+    password = os.environ['PASSWORD']
+    iniFile = open("./site/monsters/beholder/stats/.htpasswd","w")
+    iniFile.write(password)
+    iniFile.close()
+except KeyError:
+    token = open("passwd.txt","r").readline()
 
 @client.event
 async def on_ready():
