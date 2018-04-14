@@ -77,7 +77,7 @@ async def kobold(ctx):
         
 @client.command(pass_context = True)
 async def aarakocra(ctx):
-    embed = discord.Embed(title="Aarakocra", description='Birdlike Humanoids that are very dangerous, and a little too overpowered for the levels 1-10', color=0x00ff00)
+    embed = discord.Embed(title="Aarakocra", description='Birdlike Humanoids that are very dangerous.', color=0x00ff00)
     embed.set_image(url="http://monster-wiki-discord.herokuapp.com/monsters/aarakocra/pic.png")
     await client.send_message(ctx.message.channel, embed=embed)
     if(ctx.message.author.server_permissions.administrator):
