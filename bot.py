@@ -19,7 +19,7 @@ async def ping(ctx):
 @client.command(pass_context = True)
 async def help(ctx):
     embed = discord.Embed(title="Monster-Wiki", description="Thanks for using the Monster Wiki! Check out the website here: https://monster-wiki-discord.herokuapp.com/ \n To find out more about a monster, just type '!' plus the name of the monster you want to look up. For example, '!beholder' will give you info about the Beholder respectively. Here are a list of the monsters documented:", color=0x00ff00)
-    embed.add_field(name="5e", value="Beholder\nKobold", inline=True)
+    embed.add_field(name="5e", value="Beholder\nKobold\nAarakocra", inline=True)
     embed.set_image(url="https://cdn.discordapp.com/avatars/434165055316295690/d14d16e9f2314a6538711b3d9ef16040.png")
     await client.send_message(ctx.message.channel, embed=embed)
      
@@ -55,12 +55,33 @@ async def kobold(ctx):
         embed.add_field(name="Strength", value="7 (-2)", inline=True)
         embed.add_field(name="Dexterity", value="15 (+2)", inline=True)
         embed.add_field(name="Constitution", value="9 (-1)", inline=True)
-        embed.add_field(name="Intuition", value="8 (-1)", inline=True)
+        embed.add_field(name="Intelligence", value="8 (-1)", inline=True)
         embed.add_field(name="Wisdom", value="7 (-2)", inline=True)
         embed.add_field(name="Charisma", value="8 (-1)", inline=True)
         embed.add_field(name="Senses", value="Darkvision 60ft. Passive Perception 8", inline=True)
         embed.add_field(name="Languages", value="Common, Draconic", inline=True)
         embed.add_field(name="Challenge", value="1/8 (25 XP)", inline=True)
+        await client.send_message(ctx.message.author, embed=embed)
+        
+@client.command(pass_context = True)
+async def aarakocra(ctx):
+    embed = discord.Embed(title="Aarakocra", description='Birdlike Humanoids that are very dangerous, and a little too overpowered for the levels 1-10', color=0x00ff00)
+    embed.set_image(url="http://monster-wiki-discord.herokuapp.com/monsters/aarakocra/pic.png")
+    await client.send_message(ctx.message.channel, embed=embed)
+    if(ctx.message.author.server_permissions.administrator):
+        embed.add_field(name="Size/Type", value="Medium humanoid (aarakocra)", inline=True)
+        embed.add_field(name="Alignment", value="Neutral good", inline=True)
+        embed.add_field(name="Armor Class", value="12", inline=True)
+        embed.add_field(name="Hit Points", value="13 (3d8)", inline=True)
+        embed.add_field(name="Speed", value="20ft., fly 50ft.", inline=True)
+        embed.add_field(name="Strength", value="10 (+0)", inline=True)
+        embed.add_field(name="Dexterity", value="14 (+2)", inline=True)
+        embed.add_field(name="Constitution", value="10 (+0)", inline=True)
+        embed.add_field(name="Intelligence", value="11 (+0)", inline=True)
+        embed.add_field(name="Wisdom", value="12 (+1)", inline=True)
+        embed.add_field(name="Charisma", value="11 (+0)", inline=True)
+        embed.add_field(name="Languages", value="Au ran", inline=True)
+        embed.add_field(name="Challenge", value="1/4 (50 XP)", inline=True)
         await client.send_message(ctx.message.author, embed=embed)
 
 client.run('NDM0MTY1MDU1MzE2Mjk1Njkw.DbGbUw.Tz665JQ8lnMKD8WIx6pcXko6TgA')
