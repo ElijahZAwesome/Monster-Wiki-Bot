@@ -58,14 +58,14 @@ else
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form" method="POST" action="index.php">
+				<form class="login100-form validate-form" method="POST" action="index.php?monster=<?php echo $monster ?>">
 					<span class="login100-form-title p-b-70">
 						Welcome
 					</span>
 					<span class="login100-form-avatar">
 						<img src="images/logo.png" alt="AVATAR">
 					</span>
-					<input type="hidden" name="monster" value="<?php echo $_GET['monster'];?>">
+					<input type="hidden" name="monster" value="<?php $_GET['monster'];?>">
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
