@@ -9,13 +9,9 @@ if($user == "adminuser"
 }
 else
 {
-        ?> <p>Either your username or password is incorrect. You must be a DM to enter.</p> <?
-}
-else
-{
     if(isset($_POST))
     {?>
-
+            <p>Either your username or password is incorrect. You must be a DM to enter.</p>
             <form method="POST" action="index.php">
             User <input type="text" name="user"></input><br/>
             Pass <input type="password" name="pass"></input><br/>
