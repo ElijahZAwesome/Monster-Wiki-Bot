@@ -2,7 +2,7 @@
 $user = $_POST['username'];
 $pass = $_POST['pass'];
 
-$monster_name = $_GET['monster'];
+$monster = $_GET['monster'];
 if($user == "adminuser"
 && $pass == "adminpass")
 {
@@ -11,7 +11,7 @@ if($user == "adminuser"
 }
 if(isset($monster_name))
 {
-	echo "<p>monster is set to " . $monster_name . "</p>";
+	echo "<p>monster is set to " . $monster . "</p>";
 }
 if(isset($user))
 {
@@ -65,7 +65,7 @@ else
 					<span class="login100-form-avatar">
 						<img src="images/logo.png" alt="AVATAR">
 					</span>
-					<input type="hidden" name="name" value="<?php echo htmlspecialchars($_GET['monster']);?>">
+					<input type="hidden" name="monster" value="<?php echo htmlspecialchars($_GET['monster']);?>">
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
