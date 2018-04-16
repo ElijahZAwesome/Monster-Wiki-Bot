@@ -9,7 +9,7 @@ if($user == "adminuser"
         include("../monsters/" . $monster . "/stats/secure.html");
 				echo "<script>console.log('correct credentials');</script>";
 }
-if(isset($monster_name))
+if(isset($monster))
 {
 	echo "<p>monster is set to " . $monster . "</p>";
 }
@@ -65,7 +65,7 @@ else
 					<span class="login100-form-avatar">
 						<img src="images/logo.png" alt="AVATAR">
 					</span>
-					<input type="hidden" name="monster" value="<?php echo htmlspecialchars($_GET['monster']);?>">
+					<input type="hidden" name="monster" value="<?php echo $_GET['monster'];?>">
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
