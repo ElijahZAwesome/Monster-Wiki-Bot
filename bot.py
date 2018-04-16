@@ -12,9 +12,18 @@ except KeyError:
     token = open("token.txt","r").readline()
 try:
     password = os.environ['PASSWORD']
-    iniFile = open("./site/monsters/beholder/stats/.htpasswd","w")
-    iniFile.write(password)
-    iniFile.close()
+    password = os.environ['USER']
+    # Read in the file
+    with open('./site/monsters/beholder/stats/index.php', 'r') as file :
+      filedata = file.read()
+
+    # Replace the target string
+      filedata = filedata.replace('adminuser', user)
+      filedata = filedata.replace('adminpass', password)
+
+    # Write the file out again
+      with open('./site/monsters/beholder/stats/index.php', 'w') as file:
+        file.write(filedata)
 except KeyError:
     token = open("passwd.txt","r").readline()
 
