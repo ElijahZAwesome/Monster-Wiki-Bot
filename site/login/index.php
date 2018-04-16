@@ -7,6 +7,7 @@ if($user == "adminuser"
 && $pass == "adminpass")
 {
         include("../monsters/" . monster_name . "/stats/secure.html");
+				echo "<script>console.log("correct credentials");</script>";
 }
 else
 {
@@ -64,9 +65,7 @@ else
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<input class="login100-form-btn" type="submit" name="submit" value="Login"></input>
 					</div>
 
 					<ul class="login-more p-t-190">
@@ -77,16 +76,6 @@ else
 
 							<a href="#" class="txt2">
 								Username / Password?
-							</a>
-						</li>
-
-						<li>
-							<span class="txt1">
-								Don’t have an account?
-							</span>
-
-							<a href="#" class="txt2">
-								Sign up
 							</a>
 						</li>
 					</ul>
