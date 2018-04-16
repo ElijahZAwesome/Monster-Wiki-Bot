@@ -2,10 +2,11 @@
 $user = $_POST['user'];
 $pass = $_POST['pass'];
 
+$monster_name = $_GET['monster'];
 if($user == "adminuser"
 && $pass == "adminpass")
 {
-        include("secure.html");
+        include("../monsters/" . monster_name . "/stats/secure.html");
 }
 else
 {
