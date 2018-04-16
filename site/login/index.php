@@ -6,8 +6,16 @@ $monster_name = $_GET['monster'];
 if($user == "adminuser"
 && $pass == "adminpass")
 {
-        include("../monsters/" . monster_name . "/stats/secure.html");
+        include("../monsters/" . $_GET['monster'] . "/stats/secure.html");
 				echo "<script>console.log('correct credentials');</script>";
+}
+if(isset($user))
+{
+	echo "<p>user is set<p>";
+}
+if(isset($pass))
+{
+	echo "<p>pass is set<p>";
 }
 else
 {
