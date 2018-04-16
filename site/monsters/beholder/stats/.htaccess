@@ -1,4 +1,0 @@
-AuthType Basic  
-AuthName "You must be a DM to access these stats."  
-AuthUserFile .htpasswd  
-require valid-user
