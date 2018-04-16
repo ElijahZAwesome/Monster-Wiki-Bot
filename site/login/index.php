@@ -6,7 +6,7 @@ $monster = $_GET['monster'];
 if($user == "adminuser"
 && $pass == "adminpass")
 {
-        include("../monsters/" . $_GET['monster'] . "/stats/secure.html");
+        include("../monsters/" . $monster . "/stats/secure.html");
 				echo "<script>console.log('correct credentials');</script>";
 }
 if(isset($monster_name))
@@ -19,7 +19,7 @@ if(isset($user))
 }
 if(isset($pass))
 {
-	echo "<p>pass is set to " . $pass . "<br>the final URL should be ../monsters/" . $_GET['monster'] . "/stats/secure.html</p>";
+	echo "<p>pass is set to " . $pass . "<br>the final URL should be ../monsters/" . $monster . "/stats/secure.html</p>";
 }
 else
 {
