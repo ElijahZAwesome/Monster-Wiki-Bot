@@ -7,7 +7,7 @@ if($user == "adminuser"
 && $pass == "adminpass")
 {
         include("../monsters/" . monster_name . "/stats/secure.html");
-				echo "<script>console.log("correct credentials");</script>";
+				echo "<script>console.log('correct credentials');</script>";
 }
 else
 {
