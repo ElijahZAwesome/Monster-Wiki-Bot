@@ -14,7 +14,7 @@ try:
     password = os.environ['PASSWORD']
     user = os.environ['USER']
     # Read in the file
-    with open('./site/monsters/beholder/stats/index.php', 'r') as file :
+    with open('./site/login/index.php', 'r') as file :
       filedata = file.read()
 
     # Replace the target string
@@ -22,7 +22,7 @@ try:
       filedata = filedata.replace('adminpass', password)
 
     # Write the file out again
-      with open('./site/monsters/beholder/stats/index.php', 'w') as file:
+      with open('./site/login/index.php', 'w') as file:
         file.write(filedata)
 except KeyError:
     token = open("passwd.txt","r").readline()
