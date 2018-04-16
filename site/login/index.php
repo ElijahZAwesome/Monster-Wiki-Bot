@@ -9,13 +9,17 @@ if($user == "adminuser"
         include("../monsters/" . $_GET['monster'] . "/stats/secure.html");
 				echo "<script>console.log('correct credentials');</script>";
 }
+if(isset($monster_name))
+{
+	echo "<p>monster is set to " . $monster_name . "</p>";
+}
 if(isset($user))
 {
-	echo "<p>user is set<p>";
+	echo "<p>user is set to " . $user . "</p>";
 }
 if(isset($pass))
 {
-	echo "<p>pass is set<p>";
+	echo "<p>pass is set to " . $pass . "<br>the final URL should be ../monsters/" . $_GET['monster'] . "/stats/secure.html</p>";
 }
 else
 {
