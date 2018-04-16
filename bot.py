@@ -12,7 +12,7 @@ except KeyError:
     token = open("token.txt","r").readline()
 try:
     password = os.environ['PASSWORD']
-    password = os.environ['USER']
+    user = os.environ['USER']
     # Read in the file
     with open('./site/monsters/beholder/stats/index.php', 'r') as file :
       filedata = file.read()
