@@ -1,5 +1,17 @@
 <?php
-?><!DOCTYPE html>
+$user = $_POST['user'];
+$pass = $_POST['pass'];
+
+if($user == "adminuser"
+&& $pass == "adminpass")
+{
+        include("secure.html");
+}
+else
+{
+    if(isset($_POST))
+    {?>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login V6</title>
@@ -103,4 +115,7 @@
 	<script src="js/main.js"></script>
 
 </body>
-</html><? ?>
+</html>
+    <?}
+}
+?>
