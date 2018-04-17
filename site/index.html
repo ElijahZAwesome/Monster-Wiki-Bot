@@ -58,9 +58,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('images/bg.png');">
+<div class="wrapper bgded overlay" style="background-image:url('images/bg.png');" id="egggif">
   <div id="pageintro" class="hoc clear"> 
-		<img id="egggif" src="images/hams.gif" style="display: none;" />
     <!-- ################################################################################################ -->
     <article>
       <p>Welcome to the</p>
@@ -270,9 +269,7 @@ Licence URI: http://www.os-templates.com/template-terms
 var egg = new Egg();
 egg
   .addCode("s,t,e,a,m,e,d,h,a,m,s", function() {
-    jQuery('#egggif').fadeIn(500, function() {
-      window.setTimeout(function() { jQuery('#egggif').hide(); }, 5000);
-    });
+    document.getElementById("egggif").style.background-image = "url('images/hams.gif')";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);
