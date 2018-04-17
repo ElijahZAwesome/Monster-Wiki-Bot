@@ -5,7 +5,7 @@ $pass = $_POST['pass'];
 $monster = $_GET['monster'];
 if (!isset($_GET['monster']))
 {
-	echo "span class="login100-form-title p-b-70">No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
+	echo "<span class="login100-form-title p-b-70">No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
 }
 if($user == "adminuser"
 && $pass == "adminpass")
