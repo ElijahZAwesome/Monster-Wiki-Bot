@@ -77,7 +77,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row3">
+<div class="wrapper row3" id="egg2">
   <main class="hoc container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
@@ -271,6 +271,8 @@ egg
   .addCode("s,t,e,a,m,e,d,h,a,m,s", function() {
     document.getElementById("egggif").style.backgroundImage = "url('images/hams.gif')";
     document.getElementById("egggif").style.backgroundSize = "contain";
+    document.getElementById("pageintro").style.display = "none";
+    document.getElementById("egggif").style.marginTop = "50px";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);
