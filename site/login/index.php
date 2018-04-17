@@ -3,6 +3,10 @@ $user = $_POST['username'];
 $pass = $_POST['pass'];
 
 $monster = $_GET['monster'];
+if (!isset($_GET['monster']))
+{
+	echo "span class="login100-form-title p-b-70">No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
+}
 if($user == "adminuser"
 && $pass == "adminpass")
 {
@@ -19,7 +23,7 @@ else
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="images/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -74,7 +78,7 @@ else
 								Forgot
 							</span>
 
-							<a href="#" class="txt2">
+							<a href="../index.html#contact" class="txt2">
 								Username / Password?
 							</a>
 						</li>

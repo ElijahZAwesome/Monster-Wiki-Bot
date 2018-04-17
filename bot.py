@@ -25,7 +25,19 @@ try:
       with open('./site/login/index.php', 'w') as file:
         file.write(filedata)
 except KeyError:
-    token = open("passwd.txt","r").readline()
+    password = open("passwd.txt","r").readline()
+    user = open("user.txt","r").readline()
+    # Read in the file
+    with open('./site/login/index.php', 'r') as file :
+      filedata = file.read()
+
+    # Replace the target string
+      filedata = filedata.replace('adminuser', user)
+      filedata = filedata.replace('adminpass', password)
+
+    # Write the file out again
+      with open('./site/login/index.php', 'w') as file:
+        file.write(filedata)
 
 @client.event
 async def on_ready():
