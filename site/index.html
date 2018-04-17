@@ -280,6 +280,20 @@ egg
   }).listen();
 	</script>
 <script>
+var egg = new Egg();
+egg
+  .addCode("f,o,o,t,l,e,t,t,u,c,e", function() {
+    document.getElementById("egggif").style.backgroundImage = "url('images/lettuce.gif')";
+    document.getElementById("egggif").style.backgroundSize = "contain";
+    //document.getElementById("pageintro").style.display = "none";
+    document.getElementById("introblocks").style.marginTop = "1%";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
     $(document).ready(function(){ 
 	$('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
     }); 
