@@ -59,7 +59,7 @@ else
 					<input type="hidden" name="monster" value="<?php $_GET['monster'];?>">
 					<input type="hidden" name="submitted" value="submitted">
 					<?php
-		 			if (!isset($submitted)
+		 			if (!isset($submitted))
 					{
 						echo "<p>Your Username and/or Password is incorrect. Try again fam.</p>";
 					}
