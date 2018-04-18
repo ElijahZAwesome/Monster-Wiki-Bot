@@ -47,6 +47,7 @@ else
 </head>
 <body>
 	<div class="limiter">
+	<span style="position:absolute; padding-top:20px; padding-left: 20px;"><a href="/">&larr; Back</a></span>
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
 				<form class="login100-form validate-form" method="POST" action="index.php?monster=<?php echo $monster ?>">
@@ -84,7 +85,7 @@ else
 								Forgot
 							</span>
 
-							<a href="../index.html#contact" class="txt2">
+							<a href="../#contact" class="txt2">
 								Username / Password?
 							</a>
 						</li>
