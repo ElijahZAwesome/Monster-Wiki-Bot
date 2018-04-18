@@ -10,13 +10,12 @@ if (!isset($_GET['monster']))
 if($user == "adminuser"
 && $pass == "adminpass")
 {
-        include("../monsters/" . $monster . "/stats/secure.html");
+        include("../monsters/" . $monster . "/stats/secure.php");
 }
 else
 {
     if(isset($_POST))
-    {?>
-            <!DOCTYPE html>
+    {?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login V6</title>
@@ -109,7 +108,6 @@ else
 	<script src="js/main.js"></script>
 
 </body>
-</html>
-    <?}
+</html><?php }
 }
 ?>

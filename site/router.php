@@ -1,52 +1,15 @@
 <?php
-
-$indexFiles = ['index.html', 'index.php'];
-$routes = [
-  '^/api(/.*)?$' => '/index.php'
-];
-
-$requestedAbsoluteFile = dirname(__FILE__) . $_SERVER['REQUEST_URI'];
-
-// check if the the request matches one of the defined routes
-foreach ($routes as $regex => $fn)
+$root = $_SERVER['DOCUMENT_ROOT'];
+chdir($root);
+$path = '/'.ltrim(parse_url($_SERVER['REQUEST_URI'])['path'],'/');
+set_include_path(get_include_path().':'.__DIR__);
+if(file_exists($root.$path))
 {
-  if (preg_match('%'.$regex.'%', $_SERVER['REQUEST_URI']))
-  {
-    $requestedAbsoluteFile = dirname(__FILE__) . $fn;
-    break;
-  }
-}
-
-// if request is a directory call check if index files exist
-if (is_dir($requestedAbsoluteFile))
-{
-  foreach ($indexFiles as $filename)
-  {
-    $fn = $requestedAbsoluteFile.'/'.$filename;
-    if (is_file($fn))
-    {
-      $requestedAbsoluteFile = $fn;
-      break;
+    if(is_dir($root.$path) && substr($path,strlen($path) - 1, 1) !== '/')
+        $path = rtrim($path,'/').'/index.php';
+    if(strpos($path,'.php') === false) return false;
+    else {
+        chdir(dirname($root.$path));
+        require_once $root.$path;
     }
-  }
-}
-
-// if requested file does not exist or is directory => 404
-if (!is_file($requestedAbsoluteFile))
-{
-  header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
-  printf('"%s" does not exist', $_SERVER['REQUEST_URI']);
-  return true;
-}
-
-// if requested file is'nt a php file
-if (!preg_match('/\.php$/', $requestedAbsoluteFile)) {
-  header('Content-Type: '.mime_content_type($requestedAbsoluteFile));
-  $fh = fopen($requestedAbsoluteFile, 'r');
-  fpassthru($fh);
-  fclose($fh);
-  return true;
-}
-
-// if requested file is php, include it
-include_once $requestedAbsoluteFile;
+}else include_once 'pages/404.php';
