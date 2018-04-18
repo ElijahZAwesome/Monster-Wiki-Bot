@@ -180,6 +180,8 @@ egg
   .addCode("f,o,o,t,l,e,t,t,u,c,e", function() {
 	//https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Seymour_Skinner.png/220px-Seymour_Skinner.png
     document.getElementById("egggif").style.backgroundImage = "url('images/lettuce.gif')";
+    document.getElementById("titlesub").innerHTML = "Number 15:";
+    document.getElementById("title").innerHTML = "Burger King foot lettuce";
     document.getElementById("egggif").style.height = "initial";
     document.getElementById("egggif").style.backgroundSize = "contain";
     //document.getElementById("pageintro").style.display = "none";
@@ -197,6 +199,8 @@ egg
   .addCode("c,t,r,l", function() {
 	//transform: rotate(20deg);
     document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("titlesub").innerHTML = "<br>";
+    document.getElementById("title").innerHTML = "<br>";
     document.getElementById("egggif").style.height = "720px";
     document.getElementById("egggif").style.backgroundSize = "cover";
     //document.getElementById("pageintro").style.display = "none";
@@ -224,6 +228,8 @@ egg
   .addCode("a,l,t", function() {
 	//transform: rotate(20deg);
     document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("titlesub").innerHTML = "<br>";
+    document.getElementById("title").innerHTML = "<br>";
     document.getElementById("egggif").style.height = "720px";
     document.getElementById("egggif").style.backgroundSize = "cover";
     document.getElementById("introblocks").style.marginTop = "1%";
@@ -250,6 +256,8 @@ egg
   .addCode("d,e,l,e,t,e", function() {
 	//transform: rotate(20deg);
     document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("titlesub").innerHTML = "<br>";
+    document.getElementById("title").innerHTML = "<br>";
     document.getElementById("egggif").style.backgroundSize = "cover";
     document.getElementById("egggif").style.height = "720px";
     document.getElementById("introblocks").style.marginTop = "1%";
@@ -276,6 +284,8 @@ egg
   .addCode("e,s,c,a,p,e", function() {
 	//transform: rotate(20deg);
     document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("titlesub").innerHTML = "<br>";
+    document.getElementById("title").innerHTML = "<br>";
     document.getElementById("egggif").style.backgroundSize = "cover";
     document.getElementById("egggif").style.height = "720px";
     document.getElementById("introblocks").style.marginTop = "1%";
@@ -302,7 +312,20 @@ egg
   .addCode("g,o,o,n,a,n,d,s,l,a,m", function() {
 	//https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Seymour_Skinner.png/220px-Seymour_Skinner.png
     document.getElementById("egggif").style.backgroundImage = "url('images/jam.png')";
+    document.getElementById("titlesub").innerHTML = "Welcome to the";
     document.getElementById("title").innerHTML = "<b>JAM</b>";
+    document.getElementById("egggif").style.height = "initial";
+    document.getElementById("whitebtn").style.position = "initial";
+    document.getElementById("whitebtn").style.marginTop = "initial";
+    document.getElementById("whitebtn").style.marginLeft = "initial";
+    document.getElementById("whitebtn").style.transform = "initial";
+    document.getElementById("redbtn").style.position = "initial";
+    document.getElementById("redbtn").style.marginTop = "initial";
+    document.getElementById("redbtn").style.marginLeft = "initial";
+    document.getElementById("redbtn").style.transform = "initial";
+    document.getElementById("whitebtn").style.width = "initial";
+    document.getElementById("whitebtn").style.height = "initial";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);

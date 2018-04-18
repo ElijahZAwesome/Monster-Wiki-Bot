@@ -3,6 +3,7 @@ $user = $_POST['username'];
 $pass = $_POST['pass'];
 
 $monster = $_GET['monster'];
+$submitted = $_GET['submitted'];
 if (!isset($_GET['monster']))
 {
 	echo "<span>No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
@@ -18,7 +19,7 @@ else
     {?><!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V6</title>
+	<title>DM Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -56,7 +57,13 @@ else
 						<img src="images/logo.png" alt="AVATAR">
 					</span>
 					<input type="hidden" name="monster" value="<?php $_GET['monster'];?>">
-
+					<input type="hidden" name="submitted" value="submitted">
+					<?php
+		 			if (!isset($submitted)
+					{
+						echo "<p>Your Username and/or Password is incorrect. Try again fam.</p>";
+					}
+					?>
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
