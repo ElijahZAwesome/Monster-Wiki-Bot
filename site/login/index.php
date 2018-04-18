@@ -3,7 +3,7 @@ $user = $_POST['username'];
 $pass = $_POST['pass'];
 
 $monster = $_GET['monster'];
-$submitted = $_GET['submitted'];
+$submitted = $_POST['submitted'];
 if (!isset($_GET['monster']))
 {
 	echo "<span>No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
@@ -59,9 +59,9 @@ else
 					<input type="hidden" name="monster" value="<?php $_GET['monster'];?>">
 					<input type="hidden" name="submitted" value="submitted">
 					<?php
-		 			if (isset($_GET['submitted']))
+		 			if ($submitted == "submitted")
 					{
-						echo "<p>Your Username and/or Password is incorrect. Try again fam.</p>";
+						echo "<p style='text-align:center;'><br><font color='red'>Your Username and/or Password is incorrect. Try again fam.</font></p>";
 					}
 					?>
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
