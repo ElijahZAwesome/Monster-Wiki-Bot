@@ -4,13 +4,11 @@
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
-      <p>Welcome to the</p>
-      <h3 class="heading">Monster Wiki</h3>
+      <p id="titlesub">Welcome to the</p>
+      <h3 class="heading" id="title">Monster Wiki</h3>
       <footer>
-        <ul class="nospace inline pushright">
-          <li><a class="btn" href="https://discord.gg/z9q6CzS"><i class="fab fa-discord"></i> D&amp;D Discord server</a></li>
-          <li><a class="btn inverse" href="https://discordapp.com/api/oauth2/authorize?client_id=434165055316295690&permissions=0&scope=bot"><i class="fab fa-discord"></i> Bot invite link</a></li>
-        </ul>
+        <a class="btn" id="redbtn" href="https://discord.gg/z9q6CzS"><i class="fab fa-discord"></i> D&amp;D Discord server</a></li>
+        <a class="btn inverse" id="whitebtn" href="https://discordapp.com/api/oauth2/authorize?client_id=434165055316295690&permissions=0&scope=bot"><i class="fab fa-discord"></i> Bot invite link</a>
       </footer>
     </article>
     <!-- ################################################################################################ -->
@@ -60,18 +58,18 @@
       </div>
       <ul class="nospace group overview">
         <li class="one_third">
-          <figure><a href="monsters/beholder/"><img src="monsters/beholder/pic.png" alt="Beholder" style="width: auto; height: 224px;"></a>
+          <figure><a href="monsters/beholder/"><img src="monsters/beholder/pic.png" alt="Beholder" style="width: auto; height: 224px;" id="beholderimg"></a>
             <figcaption>
-              <h6 class="heading">Beholder</h6>
-              <p>It floats before you, a bulbous body with a central, unblinking eye, and a large maw.</p>
+              <h6 class="heading" id="beholdername">Beholder</h6>
+              <p id="beholderdesc">It floats before you, a bulbous body with a central, unblinking eye, and a large maw.</p>
             </figcaption>
           </figure>
         </li>
         <li class="one_third">
-          <figure><a href="monsters/kobold/"><img src="monsters/kobold/pic.png" alt="Kobold" style="width: auto; height: 224px;"></a>
+          <figure><a href="monsters/kobold/"><img src="monsters/kobold/pic.png" alt="Kobold" style="width: auto; height: 224px;" id="koboldimg"></a>
             <figcaption>
-              <h6 class="heading">Kobold</h6>
-              <p>A humanoid creature blah blah</p>
+              <h6 class="heading" id="koboldname">Kobold</h6>
+              <p id="kobolddesc">A humanoid creature blah blah</p>
             </figcaption>
           </figure>
         </li>
@@ -148,8 +146,28 @@ egg
   .addCode("s,t,e,a,m,e,d,h,a,m,s", function() {
     document.getElementById("egggif").style.backgroundImage = "url('images/hams.gif')";
     document.getElementById("egggif").style.backgroundSize = "contain";
+    document.getElementById("beholderimg").src = "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Seymour_Skinner.png/220px-Seymour_Skinner.png";
+    document.getElementById("beholdername").innerHTML = "Seymour Skinner";
+    document.getElementById("beholderdesc").innerHTML = "One of the most dangerous creatures in the realm. If you are unfortunate enough to encounter him, be prepared for an unforgettable battle.";
+    document.getElementById("koboldimg").src = "https://vignette.wikia.nocookie.net/simpsons/images/f/f9/Gary_Chalmers.png/revision/latest?cb=20130907221559";
+    document.getElementById("koboldname").innerHTML = "Gary Chalmers";
+    document.getElementById("kobolddesc").innerHTML = "The only one who Seymour fears. He has a demon's glare behind his care-free outside appearance.";
     //document.getElementById("pageintro").style.display = "none";
+    document.getElementById("titlesub").innerHTML = "I hope you're prepared for some mouth-watering";
+    document.getElementById("title").innerHTML = "Steamed Hams";
+    document.getElementById("egggif").style.height = "initial";
     document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("whitebtn").style.position = "initial";
+    document.getElementById("whitebtn").style.marginTop = "initial";
+    document.getElementById("whitebtn").style.marginLeft = "initial";
+    document.getElementById("whitebtn").style.transform = "initial";
+    document.getElementById("redbtn").style.position = "initial";
+    document.getElementById("redbtn").style.marginTop = "initial";
+    document.getElementById("redbtn").style.marginLeft = "initial";
+    document.getElementById("redbtn").style.transform = "initial";
+    document.getElementById("whitebtn").style.width = "initial";
+    document.getElementById("whitebtn").style.height = "initial";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);
@@ -160,10 +178,131 @@ egg
 var egg = new Egg();
 egg
   .addCode("f,o,o,t,l,e,t,t,u,c,e", function() {
+	//https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Seymour_Skinner.png/220px-Seymour_Skinner.png
     document.getElementById("egggif").style.backgroundImage = "url('images/lettuce.gif')";
+    document.getElementById("egggif").style.height = "initial";
     document.getElementById("egggif").style.backgroundSize = "contain";
     //document.getElementById("pageintro").style.display = "none";
     document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
+var egg = new Egg();
+egg
+  .addCode("c,t,r,l", function() {
+	//transform: rotate(20deg);
+    document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("egggif").style.height = "720px";
+    document.getElementById("egggif").style.backgroundSize = "cover";
+    //document.getElementById("pageintro").style.display = "none";
+    document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("redbtn").style.position = "absolute";
+    document.getElementById("redbtn").style.marginTop = "-200px";
+    document.getElementById("redbtn").style.marginLeft = "-500px";
+    document.getElementById("redbtn").style.transform = "rotate(90deg)";
+    document.getElementById("whitebtn").style.width = "initial";
+    document.getElementById("whitebtn").style.height = "initial";
+    document.getElementById("whitebtn").style.position = "initial";
+    document.getElementById("whitebtn").style.marginTop = "initial";
+    document.getElementById("whitebtn").style.marginLeft = "initial";
+    document.getElementById("whitebtn").style.transform = "initial";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
+var egg = new Egg();
+egg
+  .addCode("a,l,t", function() {
+	//transform: rotate(20deg);
+    document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("egggif").style.height = "720px";
+    document.getElementById("egggif").style.backgroundSize = "cover";
+    document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("redbtn").style.position = "absolute";
+    document.getElementById("redbtn").style.marginTop = "-200px";
+    document.getElementById("redbtn").style.marginLeft = "220px";
+    document.getElementById("redbtn").style.transform = "rotate(90deg)";
+    document.getElementById("whitebtn").style.width = "initial";
+    document.getElementById("whitebtn").style.height = "initial";
+    document.getElementById("whitebtn").style.position = "absolute";
+    document.getElementById("whitebtn").style.marginTop = "-170px";
+    document.getElementById("whitebtn").style.marginLeft = "420px";
+    document.getElementById("whitebtn").style.transform = "rotate(90deg)";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
+var egg = new Egg();
+egg
+  .addCode("d,e,l,e,t,e", function() {
+	//transform: rotate(20deg);
+    document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("egggif").style.backgroundSize = "cover";
+    document.getElementById("egggif").style.height = "720px";
+    document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("redbtn").style.position = "absolute";
+    document.getElementById("redbtn").style.marginTop = "200px";
+    document.getElementById("redbtn").style.marginLeft = "-550px";
+    document.getElementById("redbtn").style.transform = "rotate(90deg)";
+    document.getElementById("whitebtn").style.width = "210px";
+    document.getElementById("whitebtn").style.height = "40px";
+    document.getElementById("whitebtn").style.position = "absolute";
+    document.getElementById("whitebtn").style.marginTop = "200px";
+    document.getElementById("whitebtn").style.marginLeft = "-430px";
+    document.getElementById("whitebtn").innerHTML = "<i class='fab fa-discord'></i> Bot invite link</a>";
+    document.getElementById("whitebtn").style.transform = "rotate(90deg)";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
+var egg = new Egg();
+egg
+  .addCode("e,s,c,a,p,e", function() {
+	//transform: rotate(20deg);
+    document.getElementById("egggif").style.backgroundImage = "url('images/loss.png')";
+    document.getElementById("egggif").style.backgroundSize = "cover";
+    document.getElementById("egggif").style.height = "720px";
+    document.getElementById("introblocks").style.marginTop = "1%";
+    document.getElementById("redbtn").style.position = "absolute";
+    document.getElementById("redbtn").style.marginTop = "200px";
+    document.getElementById("redbtn").style.marginLeft = "220px";
+    document.getElementById("redbtn").style.transform = "rotate(90deg)";
+    document.getElementById("whitebtn").style.width = "210px";
+    document.getElementById("whitebtn").style.height = "40px";
+    document.getElementById("whitebtn").style.position = "absolute";
+    document.getElementById("whitebtn").style.marginTop = "290px";
+    document.getElementById("whitebtn").style.marginLeft = "360px";
+    document.getElementById("whitebtn").style.transform = "initial";
+    document.getElementById("whitebtn").innerHTML = "L   O   S   S";
+  })
+  .addHook(function(){
+    console.log("Hook called for: " + this.activeEgg.keys);
+    console.log(this.activeEgg.metadata);
+  }).listen();
+	</script>
+<script>
+var egg = new Egg();
+egg
+  .addCode("g,o,o,n,a,n,d,s,l,a,m", function() {
+	//https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Seymour_Skinner.png/220px-Seymour_Skinner.png
+    document.getElementById("egggif").style.backgroundImage = "url('images/jam.png')";
+    document.getElementById("title").innerHTML = "<b>JAM</b>";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);
