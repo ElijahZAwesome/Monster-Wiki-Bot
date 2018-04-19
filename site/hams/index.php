@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;
        charset=utf-8" />
-<title>Visual Novel Example</title>
+<title>Steamed Hams</title>
 <style type="text/css">
 body {
     text-align: center;

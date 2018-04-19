@@ -3,7 +3,7 @@
     to be pre-loaded.
 */
 var preload = [
-  "doorbell.png","welcome.png", "welcome2.png"
+  
 ];
 
 /*
@@ -51,7 +51,7 @@ function prepareNovel()
         label, "start",
         scene, "doorbell.png",
         chalmers, "*rings doorbell*",
-        scene, "welcome.png",
+        background, "welcome.png",
         chalmers, "Well Seymour, I made it. despite your directions.",
         label, "menu1",
         menu, [
@@ -63,11 +63,11 @@ function prepareNovel()
         label, "normal",
         seymour, "Ah, Superintendent Chalmers, welcome! I hope you're prepared for an unforgettable luncheon!",
         chalmers, "Yeah.",
-        scene, "welcome2.png",
+        background, "welcome2.png",
         n, "*They leave to the living room & kitchen.*",
-        scene, "egads.png",
+        background, "egads.png",
         seymour, "Oh egads!",
-        scene, "ruined.png",
+        background, "ruined.png",
         chalmers, "My roast is ruined!",
         menu, [
             "But what if?",
@@ -80,11 +80,11 @@ function prepareNovel()
         label, "rude",
         seymour, "Oh. Chalmers. Took you long enough.",
         chalmers, "Rude...",
-        scene, "welcome2.png",
+        background, "welcome2.png",
         n, "*They leave to the living room & kitchen.*",
-        scene, "egads.png",
+        background, "egads.png",
         seymour, "Oh egads!",
-        scene, "ruined.png",
+        background, "ruined.png",
         chalmers, "My roast is ruined!",
         menu, [
             "But what if?",
@@ -98,13 +98,18 @@ function prepareNovel()
         seymour, "I were to be honest and inform the Superintendent?",
       
         label, "cancel",
+        background, "whatif.png",
         seymour, "I were to leave because theres no roast?",
         n, "Seymour runs out of the kitchen through the window.",
+        background, "interupt.png",
         chalmers, "I-",
         chalmers, "Seymour?",
         chalmers, "...",
+        background, "yell.png",
         chalmers, "SEYMOUR!!!!",
+        background, "interupt.png",
         chalmers, "...",
+        background, "wait.png",
         chalmers, "......",
         chalmers, ".........",
         chalmers, "...........",
@@ -209,7 +214,9 @@ function prepareNovel()
         chalmers, ".............",
         chalmers, "...............",
         chalmers, ".................",
+        background, "yell.png",
         chalmers, "SEYYYMMOOUUURR!!!",
+        background, "wait.png",
         chalmers, "...",
         chalmers, "......",
         chalmers, ".........",
@@ -322,7 +329,9 @@ function prepareNovel()
         chalmers, ".............",
         chalmers, "...............",
         chalmers, ".................",
+        background, "yell.png",
         chalmers, "SEYYYMMOOUUURR!!!",
+        background, "wait.png",
         chalmers, "...",
         chalmers, "......",
         chalmers, ".........",

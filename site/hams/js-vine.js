@@ -1660,16 +1660,15 @@ function initNovel(w, h)
 function toggleSkip() {
   if(skip===true) {
     skip = false;
-    playNovel();
-    console.log("skipped"); 
     clearTimeout(refreshIntervalId);
     console.log("disable skip");
+    return;
   }
   if (skip===false) {
     skip = true;
     playNovel();
     console.log("skipped");
-    refreshIntervalId = setTimeout(playNovel,700);
+    refreshIntervalId = setTimeout(playNovel,300);
     console.log("enable skip, " + refreshIntervalId);
   }
 }
@@ -1731,7 +1730,7 @@ function playNovel()
             novel_popScript();
         }
       if(skip===true) {
-        refreshIntervalId = setTimeout(playNovel,700);
+        refreshIntervalId = setTimeout(playNovel,300);
         console.log("enable skip, " + refreshIntervalId);
       }
     }
