@@ -10,9 +10,7 @@ body {
 }
   
 #buttons {
-    pointer-events:none;
     padding-top: 0%;
-    z-index:100;
     position: absolute;
     padding-left: 40%;
 }
@@ -50,6 +48,7 @@ body {
   
 #buttonDiv {
     font-family: "Deja Vu Sans", Helvetica, Arial, sans-serif;
+    z-index: 100;
     font-size: 37px;
     position: absolute;
     width: 98.9%;
