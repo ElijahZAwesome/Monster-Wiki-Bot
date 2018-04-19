@@ -60,20 +60,20 @@ div.menuItem:hover {
 
 </style>
 
-<script type="text/javascript" src="js-vine.js"></script>
-<script type="text/javascript" src="game.js"></script>
+<script type="text/javascript" src="./js-vine.js"></script>
+<script type="text/javascript" src="./game.js"></script>
 </head>
 
-<body onload="initNovel(800, 600);">
+<body onload="initNovel(1152, 648);">
 <div id="debug"></div>
 <div id="novelDiv">
     <div style="position: absolute;
         left:0; top: 0; z-index:-1">
-        <img id="background0" src="images/empty.png">
+        <img id="background0" src="./images/empty.png">
     </div>
     <div style="position: absolute;
         left:0; top: 0; z-index:-1">
-        <img id="background1" src="images/empty.png">
+        <img id="background1" src="./images/empty.png">
     </div>
     <div id="dialogDiv" style="z-index:100">
     </div>
@@ -81,7 +81,9 @@ div.menuItem:hover {
 
 <p style="text-align:center">
     <input type="button" value="Restart the Novel"
-        onclick="initNovel(800, 600)"/>
+        onclick="initNovel(1152, 648)"/>
+  <input type="button" value="Enable skipping"
+        onclick="toggleSkip()"/>
 </p>
 
 </body>

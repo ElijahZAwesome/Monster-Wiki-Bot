@@ -151,7 +151,7 @@ egg
     document.getElementById("beholderdesc").innerHTML = "One of the most dangerous creatures in the realm. If you are unfortunate enough to encounter him, be prepared for an unforgettable battle.";
     document.getElementById("koboldimg").src = "https://vignette.wikia.nocookie.net/simpsons/images/f/f9/Gary_Chalmers.png/revision/latest?cb=20130907221559";
     document.getElementById("koboldname").innerHTML = "Gary Chalmers";
-    document.getElementById("kobolddesc").innerHTML = "The only one who Seymour fears. He has a demon's glare behind his care-free outside appearance.";
+    document.getElementById("kobolddesc").innerHTML = "The only one who Seymour fears. He has a demon's glare behind his care-free outside appearance. <b>WARNING: HATES THE NORTHERN LIGHTS</b>";
     //document.getElementById("pageintro").style.display = "none";
     document.getElementById("quote3").innerHTML = "<a href='hams/'><img class='circle' alt='' style='width:60px; height:60px;' src='https://media.leverans.ru/product_images/omsk/burger-king-dostavka/%D0%92%D0%9E%D0%9F%D0%9F%D0%95%D0%A0-%D0%94%D0%96%D0%A3%D0%9D%D0%98%D0%9E%D0%A0.jpg' /></a>";
     document.getElementById("titlesub").innerHTML = "I hope you're prepared for some mouth-watering";

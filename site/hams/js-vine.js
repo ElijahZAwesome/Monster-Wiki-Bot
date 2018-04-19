@@ -14,6 +14,8 @@
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
+var skip = false;
+var refreshIntervalId;
 var novel_script;
 /*
     A Character is an actor that can speak and be displayed.
@@ -985,7 +987,7 @@ function novel_handleClick(evt)
     /*
         Don't allow two clicks within 1/4 second of each other
     */
-    ok = (now - novel.lastClick > 250);
+    ok = (now - novel.lastClick > 10);
     novel.lastClick = now;
     if (ok)
     {
@@ -1128,6 +1130,9 @@ function showDialog(status)
 */
 function menu(menuArray)
 {
+  if(skip === true) {
+    skip = false;
+  }
     novel.ignoreClicks = true;
     novel.dialog.innerHTML =
         menuArray[0].replace(/{{(.*?)}}/g, novel_interpolator);
@@ -1652,6 +1657,23 @@ function initNovel(w, h)
     playNovel();
 }
 
+function toggleSkip() {
+  if(skip===true) {
+    skip = false;
+    playNovel();
+    console.log("skipped"); 
+    clearTimeout(refreshIntervalId);
+    console.log("disable skip");
+  }
+  if (skip===false) {
+    skip = true;
+    playNovel();
+    console.log("skipped");
+    refreshIntervalId = setTimeout(playNovel,700);
+    console.log("enable skip, " + refreshIntervalId);
+  }
+}
+
 /*
     Play the novel. If you aren't in the menu, paused, or at the
     end of the novel, grab the next entry in novel_script. If it's
@@ -1665,6 +1687,7 @@ function initNovel(w, h)
 */
 function playNovel()
 {
+  
     var obj;
     if (novel.pauseTimer != null)
     {
@@ -1679,6 +1702,7 @@ function playNovel()
     */
     while (!novel.ignoreClicks && novel.frame < novel_script.length && ! novel.paused)
     {
+        console.log("next dialogue");
         obj = novel_script[novel.frame];
 //      document.getElementById("debug").innerHTML = "frame: " + novel.frame + " " + obj + "/" + novel_script[novel.frame +1];
         if (obj.constructor == Character || obj.constructor == TextBlock ||
@@ -1706,5 +1730,9 @@ function playNovel()
         {
             novel_popScript();
         }
+      if(skip===true) {
+        refreshIntervalId = setTimeout(playNovel,700);
+        console.log("enable skip, " + refreshIntervalId);
+      }
     }
 }
