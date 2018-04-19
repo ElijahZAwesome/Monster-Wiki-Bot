@@ -10,7 +10,8 @@ body {
 }
   
 #buttons {
-    padding-top: 52%;
+    pointer-events:none;
+    padding-top: 0%;
     z-index:100;
     position: absolute;
     padding-left: 40%;
@@ -45,6 +46,19 @@ body {
     text-align: left;
     filter: alpha(opacity=75);
     opacity: 0.75;
+}
+  
+#buttonDiv {
+    font-family: "Deja Vu Sans", Helvetica, Arial, sans-serif;
+    font-size: 37px;
+    position: absolute;
+    width: 98.9%;
+    height: 80px;
+    top: 450px;
+    left: 0;
+    padding: 7px;
+    padding-top: 9%;
+    text-align: center;
 }
 
 .menuItem {
@@ -82,13 +96,15 @@ div.menuItem:hover {
         left:0; top: 0; z-index:-1">
         <img id="background1" src="./images/empty.png">
     </div>
-  <p style="text-align:center;" id="buttons">
+    <div id="dialogDiv">
+    </div>
+  <div id="buttonDiv">
+  <p id="buttons">
     <input type="button" value="Restart the Novel"
         onclick="initNovel(1152, 648)"/>
   <input type="button" value="Enable skipping"
         onclick="toggleSkip()"/>
 </p>
-    <div id="dialogDiv">
     </div>
 </div>
 
