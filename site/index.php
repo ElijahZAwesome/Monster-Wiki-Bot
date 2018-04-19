@@ -128,7 +128,7 @@
       </li>
       <li class="one_third">
         <blockquote>Nothing here</blockquote>
-        <figure class="clear"><img class="circle" src="images/demo/60x60.png" alt="" style="width:60px; height:60px;">
+        <figure class="clear" id="quote3"><img class="circle" src="images/demo/60x60.png" alt="" style="width:60px; height:60px;">
           <figcaption>
             <h6 class="heading">ur mum</h6>
             <em>Killing innocents</em></figcaption>
@@ -153,6 +153,7 @@ egg
     document.getElementById("koboldname").innerHTML = "Gary Chalmers";
     document.getElementById("kobolddesc").innerHTML = "The only one who Seymour fears. He has a demon's glare behind his care-free outside appearance.";
     //document.getElementById("pageintro").style.display = "none";
+    document.getElementById("quote3").innerHTML = "<a href='hams/'><img class='circle' alt='' style='width:60px; height:60px;' src='https://media.leverans.ru/product_images/omsk/burger-king-dostavka/%D0%92%D0%9E%D0%9F%D0%9F%D0%95%D0%A0-%D0%94%D0%96%D0%A3%D0%9D%D0%98%D0%9E%D0%A0.jpg' /></a>";
     document.getElementById("titlesub").innerHTML = "I hope you're prepared for some mouth-watering";
     document.getElementById("title").innerHTML = "Steamed Hams";
     document.getElementById("egggif").style.height = "initial";
