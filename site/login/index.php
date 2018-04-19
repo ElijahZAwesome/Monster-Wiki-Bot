@@ -6,12 +6,18 @@ $monster = $_GET['monster'];
 $submitted = $_POST['submitted'];
 if (!isset($_GET['monster']))
 {
-	echo "<span>No monster is selected to return to, please go back to the <a href='../'>Home page</a> and go to a monster page.</span>";
+	echo "<span>No monster is selected to return to, please go back to the <a href='../'>Home page</a>, or continue to be taken to the monster list.</span>";
 }
 if($user == "adminuser"
 && $pass == "adminpass")
 {
+	if (!isset($_GET['monster']))
+{
+	include("../pages/monsterlist.html");
+}
+	else {
         include("../monsters/" . $monster . "/stats/secure.php");
+	}
 }
 else
 {

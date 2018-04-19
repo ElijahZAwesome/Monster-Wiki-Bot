@@ -299,7 +299,7 @@ egg
     document.getElementById("whitebtn").style.marginTop = "290px";
     document.getElementById("whitebtn").style.marginLeft = "360px";
     document.getElementById("whitebtn").style.transform = "initial";
-    document.getElementById("whitebtn").innerHTML = "L   O   S   S";
+    document.getElementById("whitebtn").innerHTML = "";
   })
   .addHook(function(){
     console.log("Hook called for: " + this.activeEgg.keys);
