@@ -78,6 +78,13 @@ else
 					<div class="container-login100-form-btn">
 						<input class="login100-form-btn" type="submit" name="submit" value="Login"></input>
 					</div>
+				
+				  <?php
+		 			if ($submitted == "submitted")
+					{
+						echo "<p style='text-align:center;'><br><font color='green'>Hint: From the DM's favorite game.</font></p>";
+					}
+					?>
 
 					<ul class="login-more p-t-190">
 						<li class="m-b-8">
