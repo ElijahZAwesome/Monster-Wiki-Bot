@@ -511,6 +511,9 @@ function Input(textName)
     this.inputElement.setAttribute("class", "textClass");
     this.inputElement.setAttribute("style", "");
     this.inputElement.setAttribute("className", "textClass");
+    this.confirmElement = document.createElement('span');
+    this.confirmElement.setAttribute("id", "confirm");
+    this.confirmElement.innerHTML = "OK";
     if (this.inputElement.addEventListener)
     {
         this.inputElement.addEventListener("change", novel_inputChange, false);
@@ -520,6 +523,7 @@ function Input(textName)
         this.inputElement.attachEvent("onchange", novel_inputChange);
     }
     this.containerDiv.appendChild(this.inputElement);
+    this.containerDiv.appendChild(this.confirmElement);
     this.domRef = null;
     this.position = new Position(0, 0, true);
     this.align = "left";

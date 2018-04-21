@@ -93,6 +93,29 @@ src: url("font/RifficFree-Bold.ttf");
     overflow: visible;
 }
   
+#confirm {
+    font-family: "RifficFree-Bold";
+    color: white;
+    text-shadow:
+    -2px -2px 0 #ff60ef,
+    2px -2px 0 #ff60ef,
+    -2px 2px 0 #ff60ef,
+    2px 2px 0 #ff60ef;  
+    font-size: 25px;
+    position: absolute;
+    z-index: 100;
+    width: 20%;
+    height: 50px;
+    top: 40px;
+    left: 25%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    overflow: visible;
+}
+  
 #sayText {
     top: 100px !important;
 }
