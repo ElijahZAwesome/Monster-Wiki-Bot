@@ -30,23 +30,32 @@ var leftSide;
 var rightSide;
 var upperCenter;
 var rightTop;
+var inputArea;
 
 /*
     This function must exist, and must have this name
 */
 function prepareNovel()
 {
+  inputArea = new Input('yourName',
+{
+    position: new Position(0.2, 0.5),
+    width: 0.5,
+    text: "What is your name?"
+});
     novel.imagePath = "images/"; // path to your image directory
     novel.audioPath = "audio/"; // path to your audio directory
     
     // initialize your characters, positions, and text blocks here
-    natsuki = new Character("Natsuki", {color: "#fff"});
-    monika = new Character("Monika", {color: "#fff"});
-    player = new Character("");
+    natsuki = new Character("???", {color: "#fff"});
+    monika = new Character("???", {color: "#fff"});
+    sayori = new Character("???", {color: "#fff"});
     n = new Character("");
+    player = new Character("???", {color: "#fff"});
     
     leftSide = new Position(0, 0.69, 0, 0.5);
     rightSide = new Position(0.5, 0.69, 0, 0.5);
+    middle = new Position(0.20, 0.69, 0, 0.5);
     
     photo = new Character("");  
     lionText = new TextBlock("myText");
@@ -55,84 +64,34 @@ function prepareNovel()
     script = [
         label, "start",
         audio, {src: "playwithme", format: ["ogg","wav", "mp3"], action: "play"},
-        scene, "club.png",
-        player, "I arrive at the Literature Club.",
-        monika, {image: "monhappy.png", position: leftSide, width: "0.5", height: "0.5"},
-        monika, "\"Hey! Welcome to the literature club!\"",
-        natsuki, {position: rightSide, image: "natturnawayopeneyes.png"},
-        monika, {image: "monleanworry.png"},
-        natsuki, "\"H-Hey.\"",
-        monika, "\"Don't worry about Natsuki! Shes just shy.\"",
-        natsuki, {position: rightSide},
-        natsuki, "\"Am not! I'm just thinking about things.\"",
-        monika, "\"Sure.\"",
-        
-        label, "menu1",
-        menu, [
-            "So, what would you like to do?",
-            "Neither of these choices", [jump, "wild"],
-            "Will do anything lol", [jump, "tame"],
-        ],
-        
-        label, "wild",
-        scene, "hills2.jpg",
-        monika, {position: leftSide},
-        natsuki, {position: rightSide},
-        photo, {image: "coyote.jpg", position: upperCenter},
-        natsuki, "There",
-        monika, "That is one mangy-looking coyote.",
-        natsuki, "Not what you expected from seeing the cartoons, is it?",
-        natsuki, "But his coloration does help camouflage him in summer.",
-        photo, {visibility: "hidden"},
-        lionText, {text: "Mountain Lion picture goes here",
-            width: 0.5, color: "white", border: "1px solid black",
-            backgroundColor: "#800",
-            position: new Position(0.25, 0.3), align: "center"},
-        monika, "How come all I see is a bunch of words?",
-        natsuki, "Do <em>you</em> want to be close enough to a mountain lion to get a picture?",
-        monika, "Um, I guess not.",
-        lionText, {visibility: "hidden"},
-        natsuki, "Mountain lions and coyotes are the two wildest animals out here.",
-        jump, "The End",
-        
-        label, "tame",
-        scene, "hills2.jpg",
-        monika, {position: leftSide},
-        natsuki, {position: rightSide},
-        photo, {image: "cat_1988.jpg", position: upperCenter},
-        monika, "That&rsquo;s just a housecat!",
-        natsuki, "Yes, but there are plenty of them living here.",
-        monika, "Did they just wander away from home?",
-        natsuki, {image: "sad2.png"},
-        natsuki, "Some of them, yes. Others have been dumped in the hills by their owners, who don&rsquo;t want them any more.",
-        monika, {image: "angry1.png", say:
-        "That&rsquo;s horrible!"},
-        natsuki, "I know. I don&rsquo;t see how people can be so heartless.",
-        
-        photo, {visibility: "hidden"},
-        monika, {image: "worried1.png"},
-        natsuki, {image: "simple2.png",
-        say: "There&rsquo;s another animal you will find in the hills."},
-        natsuki, {image: "silence2.png"},
-        photo, {image: "deer.jpg", visibility: "visible"},  
-        natsuki, "But be quiet, or you&rsquo;ll scare it away.",
-
-        monika, {image: "loving1.png",
-        say: "Aww, that&rsquo;s really nice."},
-        
-        label, "The End",
-        scene, {image: "hills1.jpg"},
-        monika, {image: "simple1.png", position: leftSide},
-        natsuki, {image: "simple2.png", position: rightSide},
-        photo, {visibility: "hidden"},
-        lionText, {
-            width: 0.5, color: "white", border: "1px solid black",
-            backgroundColor: "#800",
-            position: new Position(0.25, 0.3), align: "center",
-            visibility: "visible",
-        text: "Gavin and Tyler images by Nicu Buculei, from <a href='http://openclipart.org' style='color:white'>OpenClipart.org</a>"},
-
-        natsuki, "That&rsquo;s it for the tour.",
-        monika, "Thanks, Gavin. I really enjoyed it."
+        scene, "residential.png",
+        inputArea, "",
+        jsCall,  { fcn: setPlayerName },
+        setVars, { playerName: novel.userVar.yourName},
+        sayori, "\"Heeeeeeeyyy!!\"",
+        n, "I see an annoying girl running toward me from the distance, waving her arms in the air like she's totally oblivious to any attention she might draw to herself.",
+        n, "That girl is Sayori, my neighbor and good friend since we were children.",
+        n, "You know, the kind of friend you'd never see yourself making today, but it just kind of works out because you've known each other for so long?",
+        n, "We used to walk to school together on days like this, but starting around high school she would oversleep more and more frequently, and I would get tired of waiting up.",
+        n, "But if she's going to chase after me like this, I almost feel better off running away.",
+        n, "However, I just sigh and idle in front of the crosswalk and let Sayori catch up to me.",
+        jsCall,  { fcn: setSayoriName },
+        sayori, {image: "sayorifrantic.png", position: middle, width: "0.5", height: "0.5"},
+        sayori, "\"Haaahhh...haaahhh...\"",
+        sayori, "\"I overslept again!\"",
+        sayori, "\"But I caught you this time!\"",
+        player, "\"Maybe, but only because I decided to stop and wait for you.\"",
+        sayori, {image: "sayorifrowneyfinger.png"},
+        sayori, "\"Eeehhhhh, you say that like you were thinking about ignoring me!\"",
+        sayori, "\"That's mean, {{novel.userVar.playerName}}!\"",
     ];
+}
+
+function setPlayerName() {
+  novel.userVar.playerName = novel.userVar.yourName;
+  player.name = novel.userVar.yourName;
+}
+
+function setSayoriName() {
+  sayori.name = "Sayori";
 }
