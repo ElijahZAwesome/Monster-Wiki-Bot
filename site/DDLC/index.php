@@ -126,6 +126,25 @@ src: url("font/RifficFree-Bold.ttf");
 #menuButtons {
     margin-top: 20%;
 }
+  
+  #inputDiv {
+    background-image: url('images/frame.png');
+    width: 25%;
+    height: 30%;
+    font-family: "Aller";
+    font-size: 18px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+  }
+  
+.textClass {
+    position: relative;
+    width: 99%;
+    top: 10px;
+}
 
 .menuItem {
     background-image: url('images/frame.png');

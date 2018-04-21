@@ -453,10 +453,7 @@ function novel_textEntity_display(obj, param)
     {
         obj.visibility = "visible";
     }
-    el.style.position = "absolute";
-    el.style.width = Math.floor(obj.width * 100) + "%";
-    el.style.left = xPos + "px";
-    el.style.top = yPos + "px";
+    el.style.position = "relative";
     el.style.visibility = obj.visibility; // then reveal (if visible)
 }
 
@@ -506,10 +503,13 @@ function Input(textName)
     }
     this.escName = escape(textName);
     this.color = "#000000";
+    this.containerDiv = document.createElement('div');
+    this.containerDiv.setAttribute("id", "inputDiv");
     this.inputElement = document.createElement("input");
     this.inputElement.setAttribute("type", "text");
     this.inputElement.setAttribute("id", this.escName);
     this.inputElement.setAttribute("class", "textClass");
+    this.inputElement.setAttribute("style", "");
     this.inputElement.setAttribute("className", "textClass");
     if (this.inputElement.addEventListener)
     {
@@ -519,10 +519,11 @@ function Input(textName)
     {
         this.inputElement.attachEvent("onchange", novel_inputChange);
     }
+    this.containerDiv.appendChild(this.inputElement);
     this.domRef = null;
     this.position = new Position(0, 0, true);
     this.align = "left";
-    this.font = '20px "Verily Serif Mono", Helvetica, Arial, sans-serif';
+    this.font = '20px "Aller"';
     this.width = 1.0; // decimal percentage
     this.visibility = "visible";
     this.text = "";
@@ -568,7 +569,7 @@ Input.prototype.display = function(param)
     */
     if (this.domRef == null)
     {
-        novel.tableau.appendChild(this.inputElement);
+        novel.tableau.appendChild(this.containerDiv);
         novel.actors.push(this);
     }
     this.domRef = document.getElementById(this.escName);
