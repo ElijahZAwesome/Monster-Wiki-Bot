@@ -138,7 +138,7 @@ src: url("font/RifficFree-Bold.ttf");
     color: black;
     font-family: "Aller";
     font-size: 18px;
-    background-size:100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
