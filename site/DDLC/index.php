@@ -118,7 +118,6 @@ src: url("font/RifficFree-Bold.ttf");
     font-size: 15px;
     border: none;
     background: none;
-    width: 20px;
 }
 
 /* On mouse-over */
@@ -169,7 +168,7 @@ div.menuItem:hover {
   <div id="buttonDiv">
     <button class="btn" onclick="initNovel(1152, 648)">Restart</button>
     <button class="btn" onclick="toggleSkip()">Skip</button>
-    <button class="btn" onclick="document.getElementById('novelDiv').style.width = 100%; document.getElementById('novelDiv').style.height = 100%; document.getElementById('novelDiv').style.border = 'none'; document.getElementById('novelDiv').style.marginTop = 0px; document.getElementById('novelDiv').style.marginLeft = 0px;">Fullscreen(unstable!)</button>
+    <button class="btn" onclick="fullscreen()">Fullscreen(unstable!)</button>
     </div>
 </div>
 
