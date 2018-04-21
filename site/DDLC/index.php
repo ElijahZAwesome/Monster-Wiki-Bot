@@ -168,7 +168,7 @@ div.menuItem:hover {
   <div id="buttonDiv">
     <button class="btn" onclick="initNovel(1152, 648)">Restart</button>
     <button class="btn" onclick="toggleSkip()">Skip</button>
-    <button class="btn" onclick="document.getElementById('novelDiv').style.width = 100%; document.getElementById('novelDiv').style.height = 100%;">Fullscreen(unstable!)</button>
+    <button class="btn" onclick="document.getElementById('novelDiv').style.width = 100%; document.getElementById('novelDiv').style.height = 100%; document.getElementById('novelDiv').style.border = 'none'; document.getElementById('novelDiv').style.marginTop = 0px; document.getElementById('novelDiv').style.marginLeft = 0px;">Fullscreen(unstable!)</button>
     </div>
 </div>
 
