@@ -93,6 +93,10 @@ src: url("font/RifficFree-Bold.ttf");
     overflow: visible;
 }
   
+#sayText {
+    top: 100px !important;
+}
+  
 #buttonDiv {
     font-family: "Aller";
     z-index: 100;

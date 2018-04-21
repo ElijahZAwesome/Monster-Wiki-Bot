@@ -265,7 +265,9 @@ Character.prototype.say = function(str)
     {
         str = str.replace(/{{(.*?)}}/g, novel_interpolator);
     }
+    htmlStr += "<span id='sayText'>"
     htmlStr += str;
+    htmlStr += "</span>"
     novel.dialog.innerHTML = htmlStr;
     novel.paused = true;
     // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);     
