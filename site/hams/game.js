@@ -344,6 +344,6 @@ function prepareNovel()
         chalmers, "FIN",
         
         label, "The End",
-        seymour, "oof"
+        seymour, "FIN"
     ];
 }
