@@ -122,19 +122,24 @@ src: url("font/RifficFree-Bold.ttf");
 
 /* On mouse-over */
 .btn:hover {color:rgba(255,255,255, 0.9);}
+  
+#menuButtons {
+    margin-top: 30%;
+}
 
 .menuItem {
+    background-image: url('images/frame.png');
     width: 75%;
     margin: 0.5em auto;
     padding: 0.5em 3em;
     background-color: #db1900;
     position: relative;
     text-align: center;
-    color: white;
+    color: black;
     font-family: "Aller";
     font-size: 18px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    background-size:100%;
+    background-repeat: no-repeat;
 }
 
 div.menuItem:hover {

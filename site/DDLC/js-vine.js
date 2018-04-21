@@ -1151,13 +1151,16 @@ function menu(menuArray)
     novel.dialog.innerHTML =
         menuArray[0].replace(/{{(.*?)}}/g, novel_interpolator);
     novel.dialog.style.textAlign="center";
+    var div = document.createElement('div');
+    div.id = 'menuButtons';
     for (var i = 1; i < menuArray.length; i += 2)
     {
         var mItem = new MenuItem((i-1) / 2, menuArray[i], menuArray[i+1]); 
         var el = mItem.domRef;
         novel_addOnClick(el, menuArray[i+1]);
         el.innerHTML = menuArray[i].replace(/{{(.*?)}}/g, novel_interpolator);
-        novel.tableau.appendChild(el);
+        div.appendChild(el);
+        novel.tableau.appendChild(div);
         novel.actors.push(mItem);
     }
     novel.paused = true;
