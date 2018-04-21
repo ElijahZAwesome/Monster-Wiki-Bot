@@ -118,6 +118,7 @@ src: url("font/RifficFree-Bold.ttf");
     font-size: 15px;
     border: none;
     background: none;
+    width: 20px;
 }
 
 /* On mouse-over */
