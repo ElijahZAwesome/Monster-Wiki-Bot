@@ -1674,6 +1674,10 @@ function initNovel(w, h)
     playNovel();
 }
 
+function fullscreen() {
+  document.getElementById('novelDiv').setAttribute("style", 'position: absolute; margin-top: -1px; margin-left: -1px; border: none;');
+}
+
 function toggleSkip() {
   if(skip===true) {
     skip = false;
