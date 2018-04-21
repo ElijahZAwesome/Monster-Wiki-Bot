@@ -124,7 +124,7 @@ src: url("font/RifficFree-Bold.ttf");
 .btn:hover {color:rgba(255,255,255, 0.9);}
   
 #menuButtons {
-    margin-top: 30%;
+    margin-top: 25%;
 }
 
 .menuItem {
