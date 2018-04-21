@@ -129,7 +129,7 @@ src: url("font/RifficFree-Bold.ttf");
 
 .menuItem {
     background-image: url('images/frame.png');
-    width: 75%;
+    width: 25%;
     margin: 0.5em auto;
     padding: 0.5em 3em;
     background-color: #db1900;
