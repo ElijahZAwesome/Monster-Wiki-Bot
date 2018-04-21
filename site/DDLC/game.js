@@ -3,8 +3,8 @@
     to be pre-loaded.
 */
 var preload = [
-  "club.png", "monhappy.png",
-  "monleanworry.png", "natturnawayopeneyes.png",
+  "images/club.png", "images/monhappy.png", "images/residential.png", "images/sayorifrantic.png", "images/namebox.png", "images/textbox.png",
+  "images/monleanworry.png", "images/natturnawayopeneyes.png", "images/sayorifrowneyfringer.png",
 ];
 
 /*
@@ -83,7 +83,7 @@ function prepareNovel()
         player, "\"Maybe, but only because I decided to stop and wait for you.\"",
         sayori, {image: "sayorifrowneyfinger.png"},
         sayori, "\"Eeehhhhh, you say that like you were thinking about ignoring me!\"",
-        sayori, "\"That's mean, {{novel.userVar.playerName}}!\"",
+        sayori, "\"That's mean, {{novel.userVar.yourName}}!\"",
     ];
 }
 
