@@ -1675,7 +1675,7 @@ function initNovel(w, h)
 }
 
 function fullscreen() {
-  document.getElementById('novelDiv').setAttribute("style", 'position: absolute; margin-top: -1px; margin-left: -1px; border: none;');
+  document.getElementById('novelDiv').setAttribute("style", 'position: absolute; margin-top: -10px; margin-left: -10px; border: none;');
 }
 
 function toggleSkip() {
