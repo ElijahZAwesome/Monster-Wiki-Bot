@@ -79,7 +79,7 @@ function prepareNovel()
         monika, {position: leftSide},
         natsuki, {position: rightSide},
         photo, {image: "coyote.jpg", position: upperCenter},
-        natsuki, "There&rsquo;s a reason this area is called Coyote Valley.",
+        natsuki, "There",
         monika, "That is one mangy-looking coyote.",
         natsuki, "Not what you expected from seeing the cartoons, is it?",
         natsuki, "But his coloration does help camouflage him in summer.",
