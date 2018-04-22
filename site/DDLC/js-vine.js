@@ -1653,7 +1653,10 @@ function initNovel(w, h)
     }
     novel_disableSelection(document.body);
     novel = new Novel();
+    document.getElementById("menuDiv").innerHTML = "";
+    document.getElementById("menuDiv").id = "menuDivDisabled";
     novel.tableau = document.getElementById("novelDiv");
+    novel.tableau.style.visibility = "visible";
     novel.dialog = document.getElementById("dialogDiv");
     if (novel.tableau.addEventListener)
     {

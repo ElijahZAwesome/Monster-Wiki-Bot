@@ -43,6 +43,17 @@ src: url("font/RifficFree-Bold.ttf");
     margin-right: auto;
     position: relative;
     text-align: center;
+    overflow: hidden;
+}
+  
+#menuDiv {
+    width: 1152px;
+    height: 648px;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
 }
 
 #dialogDiv {
@@ -186,8 +197,139 @@ src: url("font/RifficFree-Bold.ttf");
 /* On mouse-over */
 .btn:hover {color:rgba(255,255,255, 0.9);}
   
+#menuBGDiv {
+    z-index: -2;
+    width: 1152px;
+    height: 648px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    overflow: hidden;
+    margin-top: -54.6%;
+}  
+  
+#menuChars {
+    width: 1152px;
+    height: 648px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    text-align: center;
+    overflow: hidden;
+    margin-top: -54.6%;
+}
+  
+#menubg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("images/menu_bg.png");
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: auto 200%;
+/*adjust s value for speed*/
+  animation: menubg 500s linear infinite;
+}
+
+@keyframes menubg {
+  from {
+    background-position: 0 0;
+  }
+/*use negative width if you want it to flow right to left else and positive for left to right*/
+  to {
+    background-position: -10000px -10000px;
+  }
+}
+  
+#logo {
+    width: 25%;
+    height: auto;
+    z-index: 100;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: -480px;
+}
+  
+#sector {
+    width: auto;
+    height: 100%;
+    left: 0px;
+    z-index: 90;
+    position: absolute;
+}
+  
+.menubtn {
+    display: block; /* Make the buttons appear below each other */
+    font-family: "RifficFree-Bold";
+    color: white;
+    text-shadow:
+    -2px -2px 0 #ff60ef,
+    2px -2px 0 #ff60ef,
+    -2px 2px 0 #ff60ef,
+    2px 2px 0 #ff60ef;  
+    font-size: 25px;
+    position: relative;
+    z-index: 100;
+    width: 13%;
+    height: 45px;
+    top: 65%;
+    left: 40%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 7px;
+    text-align: left;
+    overflow: visible;
+    border: none;
+    background: none;
+    line-height: 1px;
+}
+
+/* On mouse-over */
+.menubtn:hover {color:rgba(255,255,255, 0.9);text-shadow:
+    -2px -2px 0 #ffb7f7,
+    2px -2px 0 #ffb7f7,
+    -2px 2px 0 #ffb7f7,
+    2px 2px 0 #ffb7f7;  }
+  
 #menuButtons {
-    margin-top: 20%;
+    margin-top: 28%;
+    margin-left: -60%;
+    text-align: left;
+}
+  
+#menuyuri {
+    position: absolute;
+    height: 570px;
+    width: auto;
+    top: 2%;
+    left: 40%;
+}
+  
+#menunatsuki {
+    position: absolute;
+    height: 570px;
+    width: auto;
+    top: 7%;
+    left: 54%;
+}
+  
+#menusayori {
+    position: absolute;
+    height: 690px;
+    width: auto;
+    top: 16%;
+    left: 32%;
+}
+  
+#menumonika {
+    position: absolute;
+    height: 1000px;
+    width: auto;
+    top: 11%;
+    left: 59%;
 }
   
 #inputDiv {
@@ -232,15 +374,37 @@ div.menuItem:hover {
 </style>
 
 <script type="text/javascript" src="./js-vine.js"></script>
+<script type="text/javascript" src="./jquery.js"></script>
 <script type="text/javascript" src="./game.js"></script>
 <script type="text/javascript">
 window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
 </script>
 </head>
 
-<body onload="initNovel(1152, 648);">
+<body>
 <div id="debug"></div>
-<div id="novelDiv">
+<div id="menuDiv">
+  <div id="menuButtons">
+    <button class="menubtn" onclick="initNovel(1152, 648);">New Game</button>
+    <button class="menubtn" onclick="initNovel(1152, 648);">Load Game</button>
+    <button class="menubtn" onclick="initNovel(1152, 648);">Lol</button>
+    <button class="menubtn" onclick="initNovel(1152, 648);">Blank</button>
+    <button class="menubtn" onclick="initNovel(1152, 648);">Buttons</button><br><br>
+    <button class="menubtn" onclick="initNovel(1152, 648);">Return</button>
+  </div>
+  <div id="menuBGDiv">
+    <div id="menubg"></div>
+    <img id="sector" src="images/sector.png">
+    <img id="logo" src="images/logo.png">
+  </div>
+  <div id="menuChars">
+    <img id="menuyuri" src="images/menu_art_y.png">
+    <img id="menunatsuki" src="images/menu_art_n.png">
+    <img id="menusayori" src="images/menu_art_s.png">
+    <img id="menumonika" src="images/menu_art_m.png">
+  </div>
+</div>
+<div id="novelDiv" style="visibility: hidden;">
     <div style="position: absolute;
         left:0; top: 0; z-index:-1">
         <img id="background0" src="./images/empty.png">

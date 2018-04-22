@@ -57,6 +57,9 @@ function prepareNovel()
     leftSide = new Position(0, 0.69, 0, 0.5);
     rightSide = new Position(0.5, 0.69, 0, 0.5);
     middle = new Position(0.20, 0.69, 0, 0.5);
+    leftSideDown = new Position(0, 0.70, 0, 0.5);
+    rightSideDown = new Position(0.5, 0.70, 0, 0.5);
+    middleDown = new Position(0.20, 0.70, 0, 0.5);
     
     photo = new Character("");  
     lionText = new TextBlock("myText");
@@ -82,12 +85,12 @@ function prepareNovel()
         sayori, "\"I overslept again!\"",
         sayori, "\"But I caught you this time!\"",
         player, "\"Maybe, but only because I decided to stop and wait for you.\"",
-        sayori, {image: "sayorifrowneyfinger.png"},
+        sayori, {image: "sayorifrowneyfinger.png", position: middleDown},
         sayori, "\"Eeehhhhh, you say that like you were thinking about ignoring me!\"",
         sayori, "\"That's mean, {{novel.userVar.yourName}}!\"",
         player, "\"Well, if people stare at you for acting weird then I don't want them to think we're a couple or something.\"",
-        sayori, {image: "sayorinormal.png"},
-        sayori, "\"Fine, fine\"",
+        sayori, {image: "sayorinormal.png", position: middle},
+        sayori, "\"Fine, fine.\"",
         sayori, "\"But you did wait for me, after all.\"",
         sayori, "\"I guess you don't have it in you to be mean even if you want to~\"",
         player, "\"Whatever you say, Sayori...\"",
