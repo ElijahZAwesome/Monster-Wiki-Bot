@@ -513,14 +513,6 @@ function Input(textName)
     this.confirmElement.setAttribute("id", "confirm");
     this.confirmElement.setAttribute("onclick", "novel_inputChange()");
     this.confirmElement.innerHTML = "OK";
-    if (this.inputElement.addEventListener)
-    {
-        this.inputElement.addEventListener("change", novel_inputChange, false);
-    }
-    else
-    {
-        this.inputElement.attachEvent("onchange", novel_inputChange);
-    }
     this.containerDiv.appendChild(this.inputElement);
     this.containerDiv.appendChild(this.confirmElement);
     this.domRef = null;
@@ -617,8 +609,12 @@ function novel_inputChange(evt)
     {
         evt = window.event;
     }
-    inputObj = evt.target;
+    inputObj = document.getElementById("yourName");
+    console.log("evt.target not found");
     str = inputObj.value;
+    if(str == "") {
+      return;
+    }
     str = str.replace(/&/g, '&amp;');
     str = str.replace(/</g, '&lt;');
     str = str.replace(/>/g, '&gt;');
@@ -1639,6 +1635,18 @@ function jsCall(jsInfo)
 */
 function initNovel(w, h)
 {
+    if(Cookies.get('firstrun')) {
+      if(!Cookies.get('Sayori')) {
+        return;
+      }
+    }
+    if(!Cookies.get('firstrun')) {
+      Cookies.set('firstrun', 'firstrun');
+      Cookies.set('Sayori', 'Happy thoughts');
+      Cookies.set('Natsuki', 'Dad');
+      Cookies.set('Yuri', 'Universe');
+      Cookies.set('Monika', 'Everyone');
+    }
     if ((typeof novel != 'undefined'))
     {
         if (novel.tableau)

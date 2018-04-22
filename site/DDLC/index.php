@@ -45,6 +45,11 @@ src: url("font/RifficFree-Bold.ttf");
     text-align: center;
     overflow: hidden;
 }
+ 
+#disclaimer {
+    position: absolute;
+    left: 80%;
+}
   
 #menuDiv {
     width: 1152px;
@@ -88,12 +93,12 @@ src: url("font/RifficFree-Bold.ttf");
     2px -2px 0 #ff60ef,
     -2px 2px 0 #ff60ef,
     2px 2px 0 #ff60ef;  
-    font-size: 25px;
+    font-size: 22px;
     position: absolute;
-    z-index: 100;
+    z-index: 0;
     width: 20%;
     height: 50px;
-    top: -40px;
+    top: -36px;
     left: 5%;
     background-image: url("images/namebox.png");
     background-size:100%;
@@ -205,7 +210,7 @@ src: url("font/RifficFree-Bold.ttf");
     margin-right: auto;
     position: absolute;
     overflow: hidden;
-    margin-top: -54.6%;
+    top: 0px;
 }  
   
 #menuChars {
@@ -216,7 +221,7 @@ src: url("font/RifficFree-Bold.ttf");
     position: absolute;
     text-align: center;
     overflow: hidden;
-    margin-top: -54.6%;
+    top: 0px;
 }
   
 #menubg {
@@ -244,17 +249,17 @@ src: url("font/RifficFree-Bold.ttf");
 }
   
 #logo {
-    width: 25%;
+    width: 274px;
     height: auto;
     z-index: 100;
     position: absolute;
-    margin-top: -40px;
-    margin-left: -480px;
+    left: 79px;
+    top: -28px;
 }
   
 #sector {
-    width: auto;
-    height: 100%;
+    width: 290px;
+    height: 101%;
     left: 0px;
     z-index: 90;
     position: absolute;
@@ -269,13 +274,11 @@ src: url("font/RifficFree-Bold.ttf");
     2px -2px 0 #ff60ef,
     -2px 2px 0 #ff60ef,
     2px 2px 0 #ff60ef;  
-    font-size: 25px;
+    font-size: 21px;
     position: relative;
     z-index: 100;
-    width: 13%;
-    height: 45px;
-    top: 65%;
-    left: 40%;
+    top: 378px;
+    left: 81px;
     background-size:100%;
     background-repeat: no-repeat;
     color: white;
@@ -284,7 +287,7 @@ src: url("font/RifficFree-Bold.ttf");
     overflow: visible;
     border: none;
     background: none;
-    line-height: 1px;
+    line-height: 21px;
 }
 
 /* On mouse-over */
@@ -295,41 +298,42 @@ src: url("font/RifficFree-Bold.ttf");
     2px 2px 0 #ffb7f7;  }
   
 #menuButtons {
-    margin-top: 28%;
-    margin-left: -60%;
-    text-align: left;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
 }
   
 #menuyuri {
     position: absolute;
-    height: 570px;
+    height: 582px;
     width: auto;
-    top: 2%;
-    left: 40%;
+    top: 9px;
+    left: 411px;
 }
   
 #menunatsuki {
     position: absolute;
-    height: 570px;
+    height: 563px;
     width: auto;
-    top: 7%;
-    left: 54%;
+    top: 63px;
+    left: 569px;
 }
   
 #menusayori {
     position: absolute;
-    height: 690px;
+    height: 657px;
     width: auto;
-    top: 16%;
-    left: 32%;
+    top: 119px;
+    left: 333px;
 }
   
 #menumonika {
     position: absolute;
-    height: 1000px;
-    width: auto;
-    top: 11%;
-    left: 59%;
+    height: auto;
+    width: 541px;
+    top: 88px;
+    left: 627px;
 }
   
 #inputDiv {
@@ -376,6 +380,7 @@ div.menuItem:hover {
 <script type="text/javascript" src="./js-vine.js"></script>
 <script type="text/javascript" src="./jquery.js"></script>
 <script type="text/javascript" src="./game.js"></script>
+<script type="text/javascript" src="./js.cookie.js"></script>
 <script type="text/javascript">
 window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
 </script>
@@ -384,6 +389,9 @@ window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.ke
 <body onload="document.getElementById('menubgm').play();">
 <div id="debug"></div>
 <div id="menuDiv">
+  <p id="disclaimer">
+    This game is not affiliated with Team Salvato.<br>Also, make sure cookies and javascript are not blocked.
+  </p>
   <audio id="menubgm" src="audio/dokidokiliteratureclub.ogg" preload="auto"></audio>
   <div id="menuButtons">
     <button class="menubtn" onclick="initNovel(1152, 648);">New Game</button>
