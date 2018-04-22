@@ -381,9 +381,10 @@ window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.ke
 </script>
 </head>
 
-<body>
+<body onload="document.getElementById('menubgm').play();">
 <div id="debug"></div>
 <div id="menuDiv">
+  <audio id="menubgm" src="audio/dokidokiliteratureclub.ogg" preload="auto"></audio>
   <div id="menuButtons">
     <button class="menubtn" onclick="initNovel(1152, 648);">New Game</button>
     <button class="menubtn" onclick="initNovel(1152, 648);">Load Game</button>

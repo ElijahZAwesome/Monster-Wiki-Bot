@@ -749,7 +749,7 @@ function Novel() {
     this.tableau = null;
     this.dialog = null;
     this.audio = null;
-    this.audioLoop = false;
+    this.audioLoop = true;
     this.paused = false;
     this.history = new Array();
     this.historyPos = 0;
