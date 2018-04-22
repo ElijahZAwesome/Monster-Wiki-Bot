@@ -4,7 +4,7 @@
 */
 var preload = [
   "images/club.png", "images/monhappy.png", "images/residential.png", "images/sayorifrantic.png", "images/namebox.png", "images/textbox.png",
-  "images/monleanworry.png", "images/natturnawayopeneyes.png", "images/sayorifrowneyfringer.png",
+  "images/monleanworry.png", "images/natturnawayopeneyes.png", "images/sayorifrowneyfinger.png", "images/sayorinormal.png", "images/sayoriclosedeyessmile.png",
 ];
 
 /*
@@ -41,7 +41,8 @@ function prepareNovel()
 {
     position: new Position(0.2, 0.5),
     width: 0.5,
-    text: "What is your name?"
+    text: "",
+    text2: "Please enter your name"
 });
     novel.imagePath = "images/"; // path to your image directory
     novel.audioPath = "audio/"; // path to your audio directory
@@ -84,6 +85,14 @@ function prepareNovel()
         sayori, {image: "sayorifrowneyfinger.png"},
         sayori, "\"Eeehhhhh, you say that like you were thinking about ignoring me!\"",
         sayori, "\"That's mean, {{novel.userVar.yourName}}!\"",
+        player, "\"Well, if people stare at you for acting weird then I don't want them to think we're a couple or something.\"",
+        sayori, {image: "sayorinormal.png"},
+        sayori, "\"Fine, fine\"",
+        sayori, "\"But you did wait for me, after all.\"",
+        sayori, "\"I guess you don't have it in you to be mean even if you want to~\"",
+        player, "\"Whatever you say, Sayori...\"",
+        sayori, {image: "sayoriclosedeyessmile.png"},
+        sayori, "\"Ehehe~\""
     ];
 }
 

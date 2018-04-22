@@ -259,15 +259,15 @@ Character.prototype.say = function(str)
     if (this.name != "")
     {
         htmlStr += '<div id="nameDiv"><span style="color: ' + this.color + '">' +
-        this.name + ':</span></div>';
+        this.name + '</span></div>';
     }
     if (str.indexOf("{{") >= 0)
     {
         str = str.replace(/{{(.*?)}}/g, novel_interpolator);
     }
-    htmlStr += "<span id='sayText'>"
+    htmlStr += "<div id='sayDiv'><p id='sayText'>"
     htmlStr += str;
-    htmlStr += "</span>"
+    htmlStr += "</p></div>"
     novel.dialog.innerHTML = htmlStr;
     novel.paused = true;
     // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);     
@@ -328,6 +328,7 @@ function TextBlock(textName)
     this.width = 1.0; // decimal percentage
     this.visibility = "visible";
     this.text = "";
+    this.text2 = "";
     
     /*
         If given a second parameter, use its fields
@@ -445,15 +446,11 @@ function novel_textEntity_display(obj, param)
     {
         el.style.padding = obj.padding;
     }
-    if (obj.align)
-    {
-        el.style.textAlign = obj.align;
-    }
     if (!obj.visibility)
     {
         obj.visibility = "visible";
     }
-    el.style.position = "relative";
+    el.style.position = "absolute";
     el.style.visibility = obj.visibility; // then reveal (if visible)
 }
 
@@ -511,8 +508,10 @@ function Input(textName)
     this.inputElement.setAttribute("class", "textClass");
     this.inputElement.setAttribute("style", "");
     this.inputElement.setAttribute("className", "textClass");
-    this.confirmElement = document.createElement('span');
+    this.inputElement.setAttribute("maxlength", "16");
+    this.confirmElement = document.createElement('button');
     this.confirmElement.setAttribute("id", "confirm");
+    this.confirmElement.setAttribute("onclick", "novel_inputChange()");
     this.confirmElement.innerHTML = "OK";
     if (this.inputElement.addEventListener)
     {
@@ -531,6 +530,11 @@ function Input(textName)
     this.width = 1.0; // decimal percentage
     this.visibility = "visible";
     this.text = "";
+    this.text2 = "";
+    this.questionElement = document.createElement('span');
+    this.questionElement.setAttribute("id", "question");
+    this.questionElement.innerHTML = this.text2;
+    this.containerDiv.appendChild(this.questionElement);
     
     /*
         If given a second parameter, use its fields
@@ -577,6 +581,7 @@ Input.prototype.display = function(param)
         novel.actors.push(this);
     }
     this.domRef = document.getElementById(this.escName);
+    this.questionElement.innerHTML = this.text2;
     this.domRef.value = this.text;
     this.domRef.focus();
     
@@ -629,7 +634,7 @@ function novel_inputChange(evt)
     inputObj = actor.domRef;
     if (inputObj != null)
     {
-        inputObj.parentNode.removeChild(inputObj);
+        inputObj.parentNode.parentNode.removeChild(inputObj.parentNode);
     }
     actor.domRef = null;
     playNovel();

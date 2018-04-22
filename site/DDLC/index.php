@@ -53,7 +53,7 @@ src: url("font/RifficFree-Bold.ttf");
     1px -1px 0 #161616,
     -1px 1px 0 #161616,
     1px 1px 0 #161616;  
-    font-size: 25px;
+    font-size: 24px;
     position: absolute;
     z-index: 100;
     width: 70%;
@@ -106,18 +106,58 @@ src: url("font/RifficFree-Bold.ttf");
     z-index: 100;
     width: 20%;
     height: 50px;
-    top: 40px;
-    left: 25%;
+    top: 65%;
+    left: 40%;
     background-size:100%;
     background-repeat: no-repeat;
     color: white;
     padding: 7px;
     text-align: center;
     overflow: visible;
+    border: none;
+    background: none;
+}
+  
+#question {
+    font-family: "Aller";
+    color: black; 
+    font-size: 20px;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 50px;
+    top: 13%;
+    left: 0%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    padding: 7px;
+    text-align: center;
+    overflow: visible;
+}
+  
+#confirm:hover {color:rgba(255,255,255, 0.9);text-shadow:
+    -2px -2px 0 #ffb7f7,
+    2px -2px 0 #ffb7f7,
+    -2px 2px 0 #ffb7f7,
+    2px 2px 0 #ffb7f7;  }
+  
+#sayDiv {
+    position: absolute;
+    top: 20px;
+    left: 4%;
+    width: 90%;
 }
   
 #sayText {
-    top: 100px !important;
+    position: relative;
+    top: -20px;
+    left: 0
+}
+  
+#yourName {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    text-align: center;
 }
   
 #buttonDiv {
@@ -150,7 +190,7 @@ src: url("font/RifficFree-Bold.ttf");
     margin-top: 20%;
 }
   
-  #inputDiv {
+#inputDiv {
     background-image: url('images/frame.png');
     width: 25%;
     height: 30%;
@@ -161,12 +201,13 @@ src: url("font/RifficFree-Bold.ttf");
     position: absolute;
     top: 30%;
     left: 35%;
-  }
+}
   
 .textClass {
-    position: relative;
-    width: 99%;
-    top: 10px;
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 0px;
 }
 
 .menuItem {
@@ -192,6 +233,9 @@ div.menuItem:hover {
 
 <script type="text/javascript" src="./js-vine.js"></script>
 <script type="text/javascript" src="./game.js"></script>
+<script type="text/javascript">
+window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
+</script>
 </head>
 
 <body onload="initNovel(1152, 648);">
