@@ -53,6 +53,7 @@ function Character(characterName)
     this.imageElement.setAttribute("style", "height: " + Math.floor(this.height * 100) + "%;");
     this.prevSrc = null;
     this.avatar = "";
+    this.zindex = 0;
     this.domRef = null;
     this.position = new Position(0, 0, true);
     this.prevPosition = new Position(0, 0, true);
@@ -74,6 +75,7 @@ function Character(characterName)
                 obj.image.replace(/{{(.*?)}}/g, novel_interpolator));
         }
         this.position = obj.position || new Position(0, 0, true);
+        //this.image.setAttribute("style", "z-index: " + param.zindex + ";");
     }
 }
 
@@ -106,6 +108,10 @@ Character.prototype.display = function(param)
                 {
                     displayImage = false;
                 }
+            } 
+            else if (property == "zindex") {
+                this.zindex = param.zindex;
+                this.image.setAttribute("style", "z-index: " + param.zindex + ";");
             }
             else if (property != "say" || property != "width" || property != "height")
             {
@@ -183,6 +189,7 @@ Character.prototype.finishDisplay = function(param, displayImage)
             el.style.left = xPos + "px";
             el.style.top = yPos + "px";
             el.style.visibility = this.visibility;
+            el.style.zIndex = this.zindex;
             this.prevPosition = this.position.clone();
         }
 
@@ -270,6 +277,15 @@ Character.prototype.say = function(str)
     htmlStr += "</p></div>"
     novel.dialog.innerHTML = htmlStr;
     novel.paused = true;
+    var ps = document.getElementById('sayText');
+    var lines = lineWrapDetector.getLines(ps);
+    console.log(lines);
+    var line1;
+    for(var arrayItem in lines[0]) {
+      line1 += arrayItem.innerText;
+    }
+    console.log(line1);
+    console.log(countLines());
     // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);     
 }
 
@@ -1234,6 +1250,12 @@ function scene(param)
     novel_changeBackground(param, true);
 }
 
+function countLines() {
+  var ps = document.getElementById('sayText');
+  var lines = lineWrapDetector.getLines(ps);
+  return lines.length;
+}
+
 /*
     If the parameter was a string, it's the name of a background
     image. If the parameter is an object, the image property is
@@ -1624,6 +1646,11 @@ function endIf()
 function jsCall(jsInfo)
 {
     jsInfo.fcn.apply(window, jsInfo.params);
+}
+
+function pause(duration) {
+    novel.paused = true;
+    setTimeout(function(){ playNovel() }, duration);
 }
 
 /*

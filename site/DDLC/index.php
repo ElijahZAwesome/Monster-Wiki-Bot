@@ -162,6 +162,7 @@ src: url("font/RifficFree-Bold.ttf");
     top: 20px;
     left: 4%;
     width: 90%;
+    line-height: 30px;
 }
   
 #sayText {
@@ -381,6 +382,7 @@ div.menuItem:hover {
 <script type="text/javascript" src="./jquery.js"></script>
 <script type="text/javascript" src="./game.js"></script>
 <script type="text/javascript" src="./js.cookie.js"></script>
+<script type="text/javascript" src="./lineWrapDetector.js"></script>
 <script type="text/javascript">
 window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
 </script>

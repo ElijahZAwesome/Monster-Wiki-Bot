@@ -48,8 +48,9 @@ function prepareNovel()
     novel.audioPath = "audio/"; // path to your audio directory
     
     // initialize your characters, positions, and text blocks here
-    natsuki = new Character("???", {color: "#fff"});
-    monika = new Character("???", {color: "#fff"});
+    natsuki = new Character("Girl 2", {color: "#fff"});
+    monika = new Character("Girl 1", {color: "#fff"});
+    yuri = new Character("Girl 3", {color: "#fff"});
     sayori = new Character("???", {color: "#fff"});
     n = new Character("");
     player = new Character("???", {color: "#fff"});
@@ -80,7 +81,7 @@ function prepareNovel()
         n, "But if she's going to chase after me like this, I almost feel better off running away.",
         n, "However, I just sigh and idle in front of the crosswalk and let Sayori catch up to me.",
         jsCall,  { fcn: setSayoriName },
-        sayori, {image: "sayorifrantic.png", position: middle, width: "0.5", height: "0.5"},
+        sayori, {image: "sayorifrantic.png", position: middle, zindex: "1"},
         sayori, "\"Haaahhh...haaahhh...\"",
         sayori, "\"I overslept again!\"",
         sayori, "\"But I caught you this time!\"",
@@ -95,7 +96,10 @@ function prepareNovel()
         sayori, "\"I guess you don't have it in you to be mean even if you want to~\"",
         player, "\"Whatever you say, Sayori...\"",
         sayori, {image: "sayoriclosedeyessmile.png"},
-        sayori, "\"Ehehe~\""
+        sayori, "\"Ehehe~\"",
+        sayori, {visibility: "hidden"},
+        player, "We cross the street together and make our way to school.",
+        player, "As we draw near, the streets become increasingly speckled with other students making their daily commute.",
     ];
 }
 
