@@ -1627,6 +1627,27 @@ function checkForQuickEnding() {
   }
 }
 
+function initCookies() {
+  if (Cookies.get('quick')) {
+    quickEnding2();
+  }
+  if (Cookies.get('firstrun')) {
+    if (!Cookies.get('Sayori')) {
+      isQuickEnding = true;
+    }
+    if (!Cookies.get('Monika')) {
+      isQuickEnding = true;
+    }
+  }
+  if (!Cookies.get('firstrun')) {
+    Cookies.set('firstrun', 'firstrun');
+    Cookies.set('Sayori', 'Happy thoughts');
+    Cookies.set('Natsuki', 'Dad');
+    Cookies.set('Yuri', 'Universe');
+    Cookies.set('Monika', 'Everyone');
+  }
+}
+
 /*
     Initialize the novel object; the parameters w and h are
     the width and height of the <div id="novel">.

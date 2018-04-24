@@ -433,7 +433,7 @@ function(e) {
 
 ,
 true);
-</script></head><body onload="document.getElementById('menubgm').play(); checkForQuickEnding();"><div id="debug"></div><div id="end"><div id="endbg">
+</script></head><body onload="document.getElementById('menubgm').play(); initCookies(); checkForQuickEnding();"><div id="debug"></div><div id="end"><div id="endbg">
   </div></div><div id="menuDiv"><p id="disclaimer">This game is not affiliated with Team Salvato.<br>Also,
 make sure cookies and javascript are not blocked. </p><audio loop id="menubgm" src="audio/dokidokiliteratureclub.ogg" preload="auto">
 </audio><div id="menuButtons"><button class="menubtn" onclick="initNovel(1152, 648);">New Game</button><button class="menubtn" onclick="initNovel(1152, 648);">Load Game</button><button class="menubtn" onclick="initNovel(1152, 648);">Lol</button><button class="menubtn" onclick="initNovel(1152, 648);">Blank</button><button class="menubtn" onclick="initNovel(1152, 648);">Buttons</button><br><br><button class="menubtn" onclick="initNovel(1152, 648);">Return</button></div><div id="menuBGDiv"><div id="menubg"></div><img id="sector" src="images/sector.png"><img id="logo" src="images/logo.png"></div><div id="menuChars"><img id="menuyuri" src="images/menu_art_y.png"><img id="menunatsuki" src="images/menu_art_n.png"><img id="menusayori" src="images/menu_art_s.png"><img id="menumonika" src="images/menu_art_m.png"></div></div><div id="novelDiv" style="visibility: hidden;"><div style="position: absolute;
