@@ -69,15 +69,15 @@
           <figure><a href="monsters/kobold/"><img src="monsters/kobold/pic.png" alt="Kobold" style="width: auto; height: 224px;" id="koboldimg"></a>
             <figcaption>
               <h6 class="heading" id="koboldname">Kobold</h6>
-              <p id="kobolddesc">A humanoid creature blah blah</p>
+              <p id="kobolddesc">"Kobolds are craven reptilian humanoids that commonly infest dungeons. They make up for their physical ineptitude with a cleverness for trap making."</p>
             </figcaption>
           </figure>
         </li>
         <li class="one_third">
-          <figure><a href="monsters/404"><img src="images/demo/320x240.png" alt="" style="width: auto; height: 224px;"></a>
+          <figure><a href="monsters/aarakocra/"><img src="monsters/aarakocra/pic.png" alt="" style="width: auto; height: 224px;"></a>
             <figcaption>
-              <h6 class="heading">Nothing here yet</h6>
-              <p>No more than 2 monsters have been added lol</p>
+              <h6 class="heading">Aarakocra</h6>
+              <p>Birdlike Humanoids that are very dangerous.</p>
             </figcaption>
           </figure>
         </li>
