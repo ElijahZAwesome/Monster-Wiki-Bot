@@ -1,5 +1,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;
  charset=utf-8" />
+  <link rel="icon" href="images/window_icon.png" type="image/x-icon"/>
+<link rel="shortcut icon" href="images/window_icon.png" type="image/x-icon"/>
  <title>DDLC</title><style type="text/css">body {
   text-align: center;
 }
@@ -91,7 +93,34 @@
 #dialogDiv {
   font-family: "Aller";
   color: white;
-  text-shadow: -1px -1px 0 #161616, 1px -1px 0 #161616, -1px 1px 0 #161616, 1px 1px 0 #161616;
+  text-shadow: -1px -1px 1px #161616, 1px -1px 1px #161616, -1px 1px 1px #161616, 1px 1px 1px #161616;
+  /*text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
+  text-shadow: 0 0 2px #000; *//* horizontal-offset vertical-offset 'blur' colour */
+  /*-moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;*/
   font-size: 24px;
   position: absolute;
   z-index: 100;
@@ -111,7 +140,7 @@
 #nameDiv {
   font-family: "RifficFree-Bold";
   color: white;
-  text-shadow: -2px -2px 0 #ff60ef, 2px -2px 0 #ff60ef, -2px 2px 0 #ff60ef, 2px 2px 0 #ff60ef;
+  text-shadow: -2px -2px 0 #DAA4C5, 2px -2px 0 #DAA4C5, -2px 2px 0 #DAA4C5, 2px 2px 0 #DAA4C5;
   font-size: 22px;
   position: absolute;
   z-index: 0;
@@ -131,7 +160,7 @@
 #confirm {
   font-family: "RifficFree-Bold";
   color: white;
-  text-shadow: -2px -2px 0 #ff60ef, 2px -2px 0 #ff60ef, -2px 2px 0 #ff60ef, 2px 2px 0 #ff60ef;
+  text-shadow: -2px -2px 0 #A37F99, 2px -2px 0 #A37F99, -2px 2px 0 #A37F99, 2px 2px 0 #A37F99;
   font-size: 25px;
   position: absolute;
   z-index: 100;
@@ -177,13 +206,70 @@
   left: 4%;
   width: 90%;
   line-height: 30px;
-  overflow: hidden;
 }
 
 #sayText {
   position: relative;
   top: -20px;
   left: 0;
+  overflow: hidden;
+}
+  
+#glitchText {
+  position: relative;
+  top: -20px;
+  left: 0;
+  overflow: hidden;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000,
+
+  -2px -2px 0 #000,
+  2px -2px 0 #000,
+  -2px 2px 0 #000,
+  2px 2px 0 #000,
+
+  -3px -3px 0 #000,
+  3px -3px 0 #000,
+  -3px 3px 0 #000,
+  3px 3px 0 #000,
+  
+  -4px -4px 0 #000,
+  4px -4px 0 #000,
+  -4px 4px 0 #000,
+  4px 4px 0 #000,
+  
+  -4px -4px 0 #000,
+  4px -4px 0 #000,
+  -4px 4px 0 #000,
+  4px 4px 0 #000,
+  
+  -16px -16px 0 #000,
+  16px -16px 0 #000,
+  -16px 16px 0 #000,
+  16px 16px 0 #000,
+  
+  -17px -17px 0 #000,
+  17px -17px 0 #000,
+  -17px 17px 0 #000,
+  17px 17px 0 #000,
+  
+  -18px -18px 0 #000,
+  18px -18px 0 #000,
+  -18px 18px 0 #000,
+  18px 18px 0 #000,
+  
+  -19px -19px 0 #000,
+  19px -19px 0 #000,
+  -19px 19px 0 #000,
+  19px 19px 0 #000,
+  
+  -20px -8px 0 #000,
+  20px -8px 0 #000,
+  -2px 8px 0 #000,
+  20px 8px 0 #000;
 }
 
 #saySpan1 {

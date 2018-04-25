@@ -48,10 +48,10 @@ function prepareNovel()
     novel.audioPath = "audio/"; // path to your audio directory
     
     // initialize your characters, positions, and text blocks here
-    natsuki = new Character("Girl 2", {color: "#fff"});
-    monika = new Character("Girl 1", {color: "#fff"});
-    yuri = new Character("Girl 3", {color: "#fff"});
-    sayori = new Character("???", {color: "#fff"});
+    natsuki = new Character("Girl 2", {color: "#fff", position: new Position(0.2, 0.69, 0, 0.5)});
+    monika = new Character("Girl 1", {color: "#fff", position: new Position(0.2, 0.69, 0, 0.5)});
+    yuri = new Character("Girl 3", {color: "#fff", position: new Position(0.2, 0.69, 0, 0.5)});
+    sayori = new Character("Sayori", {color: "#fff", position: new Position(0.2, 0.69, 0, 0.5)});
     n = new Character("");
     player = new Character("???", {color: "#fff"});
     
@@ -76,6 +76,7 @@ function prepareNovel()
         inputArea, "",
         jsCall,  { fcn: setPlayerName },
         setVars, { playerName: novel.userVar.yourName},
+        jsCall,  { fcn: setCharName, params: [sayori, "???"] },
         sayori, "\"Heeeeeeeyyy!!\"",
         n, "I see an annoying girl running toward me from the distance, waving her arms in the air like she's totally oblivious to any attention she might draw to herself.",
         n, "That girl is Sayori, my neighbor and good friend since we were children.",
@@ -83,7 +84,7 @@ function prepareNovel()
         n, "We used to walk to school together on days like this, but starting around high school she would oversleep more and more frequently, and I would get tired of waiting up.",
         n, "But if she's going to chase after me like this, I almost feel better off running away.",
         n, "However, I just sigh and idle in front of the crosswalk and let Sayori catch up to me.",
-        jsCall,  { fcn: setSayoriName },
+        jsCall,  { fcn: setCharName, params: [sayori, "Sayori"] },
         sayori, {image: "sayorifrantic.png", position: middle, zindex: "1"},
         sayori, "\"Haaahhh...haaahhh...\"",
         sayori, "\"I overslept again!\"",
@@ -141,6 +142,16 @@ function prepareNovel()
         n, "Sayori wants me to check out some clubs.",
         n, "I guess I have no choice but to start with the anime club...",
         sayori, "\"Hellooo?\"",
+        sayori, {image: "sayoriworrymouthclosedhandsdown.png", position: middle, zindex: "1"},
+        player, "\"Sayori...?\"",
+        n, "Sayori must have come into the classroom while I was spacing out.",
+        n, "I look around and realize that I'm the only one left in the classroom.",
+        sayori, {image: "sayorinormal.png"},
+        sayori, "{{glitchGen(100)}}",
+        sayori, "{{allowOverflow()}}This is a test, its meant to show how the span can overflow if there is a very long string.<br> I can also manually newline using < br >",
+        sayori, "{{disallowOverflow()}}and now were back to normal wrapping of span text, as should be evidenced by now.",
+        sayori, "{{enableGlitch()}} This text is glitched.",
+        sayori, "{{disableGlitch()}} This text is not.",
       
         label, "Quick",
         audio, {src: "playwithme", format: ["ogg","wav", "mp3"], action: "play"},
@@ -148,7 +159,7 @@ function prepareNovel()
         inputArea, "",
         jsCall,  { fcn: setPlayerName },
         setVars, { playerName: novel.userVar.yourName},
-        sayori, {image: "sayoriworrymouthclosedhandsdown.png", position: middle, zindex: "1"},
+        sayori, {image: "sayoriveryworrymouthclosedhandsdown.png", position: middle, zindex: "1", visibility: "visible"},
         sayori, "\"...\"",
         sayori, "\"...\"",
         sayori, "\"W-What...\"",
@@ -173,6 +184,6 @@ function setPlayerName() {
   player.name = novel.userVar.yourName;
 }
 
-function setSayoriName() {
-  sayori.name = "Sayori";
+function setCharName(char, nameToChange) {
+  char.name = nameToChange;
 }

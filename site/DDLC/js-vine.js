@@ -8,7 +8,7 @@
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See sthe
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
@@ -18,6 +18,8 @@ var skip = false;
 var refreshIntervalId;
 var animatingSay = false;
 var isQuickEnding = false;
+var shouldOverflow = "hidden";
+var isGlitchText = "sayText";
 var images = [],
   x = -1;
 images[0] = "url('images/noise1.jpg')";
@@ -170,9 +172,69 @@ Character.prototype.finishDisplay = function(param, displayImage) {
       xPos -= Math.floor(pos.xAnchor * this.image.width);
       yPos -= Math.floor(pos.yAnchor * this.image.height);
       el.style.position = "absolute";
-      el.style.left = xPos + "px";
-      el.style.top = yPos + "px";
+      if(el.style.visibility == "hidden") {
+        if(this.visibility=="visible") {
+          $("#" + el.id).finish();
+          el.style.left = xPos + 25 + "px";
+          el.style.top = yPos + "px";
+          $("#" + el.id).css('opacity', 0);
+          console.log(el.width + " + " + el.height);
+          $("#" + el.id).width($("#" + el.id).width() - 50);
+          $("#" + el.id).height($("#" + el.id).height() - 50);
+          $("#" + el.id).fadeTo("500", 1);
+          /*
+          $("#" + el.id).animate({
+            left: el.left - 25 + "px"
+          }, { duration: 400, queue: false, easing: "linear", complete: function() {
+            console.log("animated size");
+            console.log(el.width + " + " + el.height);
+          }});
+          */
+          console.log(xPos + " " + yPos);
+          $("#" + el.id).animate({
+            left: xPos + "px",
+            width: el.width + 50,
+            height: el.height + 50
+          }, { duration: 400, queue: false, easing: "linear", complete: function() {
+            console.log("animated size");
+            console.log(el.width + " + " + el.height);
+            el.style.visibility = "visible";
+          }});
+        }
+      } 
+      if(el.style.visibility == "visible") {
+        if(this.visibility=="hidden") {
+          $("#" + el.id).finish();
+          $("#" + el.id).fadeTo("500", 0);
+          el.style.left = xPos - 15 + "px";
+          el.style.top = yPos + "px";
+          console.log("hiding");
+          console.log(xPos + " " + yPos);
+          $("#" + el.id).animate({
+            left: xPos + 15 + "px",
+            width: el.width - 50,
+            height: el.height - 50
+          }, { duration: 400, queue: false, easing: "linear", complete: function() {
+            console.log("animated size");
+            console.log(el.width + " + " + el.height);
+            el.style.visibility = "hidden";
+          }});
+        }
+      }
+      console.log(el.id);
+      $("#" + el.id).animate({
+        left: xPos + "px",
+        top: yPos + "px"
+      }, 500, "linear", function() {
+        console.log("animated");
+      });
+      /*el.style.left = xPos + "px";
+      el.style.top = yPos + "px";*/
+      if(el.style.visibility != "visible") {
+        if(this.visibility !="hidden") {
       el.style.visibility = this.visibility;
+        }
+      }
       el.style.zIndex = this.zindex;
       this.prevPosition = this.position.clone();
     }
@@ -242,13 +304,18 @@ Character.prototype.say = function(str) {
   if (str.indexOf("{{") >= 0) {
     str = str.replace(/{{(.*?)}}/g, novel_interpolator);
   }
-  htmlStr += "<div id='sayDiv'><p id='sayText'>"
-  htmlStr += str;
+  htmlStr += "<div id='sayDiv'><p id='" + isGlitchText + "' style='overflow: " + shouldOverflow;
+  if(shouldOverflow == "visible") {
+    htmlStr += "; white-space:nowrap";
+  }
+  htmlStr += ";'>" + str;
   htmlStr += "</p></div><div id='ctc'></div>"
   novel.dialog.innerHTML = htmlStr;
   novel.paused = true;
-  replaceWithSpan();
-  animateSay1();
+  if(shouldOverflow == "hidden"){
+    replaceWithSpan();
+    animateSay1();
+  }
   // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);     
 }
 
@@ -1098,13 +1165,22 @@ function scene(param) {
 }
 
 function countLines() {
-  var ps = document.getElementById('sayText');
+  if(isGlitchText=="glitchText") {
+    var ps = document.getElementById('glitchText');
+  } else if (isGlitchText=="sayText") {
+    var ps = document.getElementById('sayText');
+  }
   var lines = lineWrapDetector.getLines(ps);
   return lines.length;
 }
 
 function replaceWithSpan() {
-  var ps = document.getElementById('sayText');
+  if(isGlitchText == "glitchText") {
+    var ps = document.getElementById('glitchText');
+  }
+  else if (isGlitchText == "sayText") {
+    var ps = document.getElementById('sayText');
+  }
   var ctc = document.getElementById('ctc');
   var lines = lineWrapDetector.getLines(ps);
   var finishedLines = "";
@@ -1210,6 +1286,7 @@ function hideDialogue() {
 
 function quickEnding() {
   Cookies.set("quick", "now everyone can be happy.");
+  window.open('','_parent','');
   window.close();
 }
 
@@ -1289,11 +1366,15 @@ function rotateKillRight() {
 }
 
 function startSHangEarly() {
-  document.getElementById("end").innerHTML += "<img id='endText' src='images/happy.png'><img id='s_kill_early' src='images/s_kill_early.png'>";
+  document.getElementById("end").innerHTML = "<div id='endbg'></div><img id='endText' src='images/happy.png'><img id='s_kill_early' src='images/s_kill_early.png'>";
+  document.getElementById('endbg').style.width = "1152px";
+  document.getElementById('endbg').style.height = "648px";
+  document.getElementById('endbg').style.opacity = 0.3;
   rotateKillRight();
   sKillEarlyAnimLoop();
+  $("#endText").css("opacity", 0);
   setTimeout(function() {
-    $("#endText").fadeTo("100", 1);
+    $("#endText").fadeTo("2000", 1);
   }, 600000);
 }
 
@@ -1733,6 +1814,63 @@ function toggleSkip() {
     refreshIntervalId = setTimeout(playNovel, 300);
     console.log("enable skip, " + refreshIntervalId);
   }
+}
+
+function directWriteName(name) {
+  var htmlStr = "";
+  if (this.name != "") {
+    htmlStr += '<div id="nameDiv"><span style="color: ' + this.color + '">' +
+      name + '</span></div>';
+  }
+  if (str.indexOf("{{") >= 0) {
+    str = str.replace(/{{(.*?)}}/g, novel_interpolator);
+  }
+  htmlStr += "<div id='sayDiv'><p id='" + isGlitchText + "'>";
+  htmlStr += "<span id='directText1' style='display: block; overflow: visible; width: 200%;'></span><span id='directText2' style='display: block; overflow: visible; width: 200%;'></span><span id='directText3' style='display: block; overflow: visible; width: 200%;'></span></p></div><div id='ctc'></div>";
+  novel.dialog.innerHTML = htmlStr;
+  novel.paused = true;
+}
+
+function directWriteLine1(str) {
+  $('#directText1').html = str;
+}
+
+function directWriteLine2(str) {
+  $('#directText2').html = str;
+}
+
+function directWriteLine3(str) {
+  $('#directText3').html = str;
+}
+
+function glitchGen(amount) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽž";
+
+  for (var i = 0; i < amount; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+function allowOverflow() {
+  shouldOverflow = "visible";
+  return "";
+}
+
+function disallowOverflow() {
+  shouldOverflow = "hidden";
+  return "";
+}
+
+function enableGlitch() {
+  isGlitchText = "glitchText";
+  return "";
+}
+
+function disableGlitch() {
+  isGlitchText = "sayText";
+  return "";
 }
 
 /*
