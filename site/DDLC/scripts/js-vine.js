@@ -20,6 +20,7 @@ var animatingSay = false;
 var isQuickEnding = false;
 var shouldOverflow = "hidden";
 var isGlitchText = "sayText";
+var charFocused = null;
 var images = [],
   x = -1;
 images[0] = "url('images/noise1.jpg')";
@@ -1917,6 +1918,42 @@ function enableGlitch() {
 function disableGlitch() {
   isGlitchText = "sayText";
   return "";
+}
+
+function focusChar(char) {
+  console.log("focused");
+  if(char != "none") {
+    el = document.getElementById(char);
+    var oPos = $("#" + el.id).position();
+    var newX = 10;
+          $("#" + el.id).animate({
+            left: oPos.left - newX,
+            width: el.width + 10,
+            height: el.height + 10
+          }, { duration: 400, queue: false, easing: "linear", complete: function() {
+            console.log("animated size");
+            console.log(el.width + " + " + el.height);
+       }});
+    charFocused = char;
+    return;
+  }
+  if(char=="none") {
+    if(charFocused != null || charFocused != "none") {
+      el = document.getElementById(charFocused);
+      var oPos = $("#" + el.id).position();
+      var newX = 10;
+      $("#" + el.id).animate({
+            left: oPos.left + newX,
+            width: el.width - 10,
+            height: el.height - 10
+       }, { duration: 400, queue: false, easing: "linear", complete: function() {
+            console.log("animated size");
+            console.log(el.width + " + " + el.height);
+       }});
+      charFocused = char;
+      return;
+    }
+  }
 }
 
 /*

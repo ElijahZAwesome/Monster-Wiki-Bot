@@ -66,7 +66,7 @@ function prepareNovel() {
     color: "#fff"
   });
 
-  offScreenLeft = new Position(-0.4, 0.69, 0, 0.5);
+  offScreenLeft = new Position(-0.5, 0.69, 0, 0.5);
   farLeftSide = new Position(-0.1, 0.69, 0, 0.5);
   leftSide = new Position(0, 0.69, 0, 0.5);
   leftSideDown = new Position(0, 0.70, 0, 0.5);
@@ -227,7 +227,8 @@ function prepareNovel() {
       action: "play",
       loop: true
     },
-    sayori, {image: "sayorihappybothhandsup.png", position: leftSide, visibility: "visible"},
+    pause, 100,
+    sayori, {image: "sayorihappybothhandsup.png", position: farLeftSide, visibility: "visible"},
     sayori, "\"Everyone! The new member is here~!\"",
     player, "\"I told you, don't call me a 'new member--'\"",
     sayori, {image: "sayorihappybothhandsup.png", position: offScreenLeft, visibility: "visible"},
@@ -273,6 +274,7 @@ function prepareNovel() {
       fcn: setCharName,
       params: [natsuki, "Natsuki"]
     },
+    focusChar, "Natsuki",
     natsuki, {image: "natsukiarmcrosslooktosidemouthclosed.png"},
     natsuki, "\"Hmph.\"",
     
