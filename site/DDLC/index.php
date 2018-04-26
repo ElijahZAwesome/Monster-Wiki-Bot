@@ -25,6 +25,9 @@ true);
   <div id="menuDiv">
     <p id="disclaimer">This game is not affiliated with Team Salvato.<br>Also,
 make sure cookies and javascript are not blocked. </p>
+    <p id="version">
+      Version 0.2
+    </p>
     <audio loop id="menubgm" src="audio/dokidokiliteratureclub.ogg" preload="auto"></audio>
     <div id="menuButtons">
       <button class="menubtn" onclick="initNovel(1152, 648);">New Game</button>

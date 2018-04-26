@@ -45,6 +45,12 @@ body {
   left: 80%;
 }
 
+#version {
+  position: absolute;
+  left: 90%;
+  top: 90%;
+}
+
 #menuDiv {
   width: 1152px;
   height: 648px;
