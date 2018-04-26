@@ -311,7 +311,7 @@ Character.prototype.say = function(str) {
   }
   htmlStr += "<div id='sayDiv'><p id='" + isGlitchText + "' style='overflow: " + shouldOverflow;
   if(shouldOverflow == "visible") {
-    htmlStr += "; white-space:nowrap";
+    htmlStr += "; white-space:pre";
   }
   htmlStr += ";'>" + str;
   htmlStr += "</p></div><div id='ctc'></div>"
@@ -1084,6 +1084,7 @@ function clearDialog() {
 */
 function showDialog(status) {
   novel.dialog.style.visibility = status;
+  document.getElementById('buttonDiv').style.visibility = status;
 }
 
 /*
@@ -1286,7 +1287,10 @@ function ctcLoop() {
 }
 
 function hideDialogue() {
-  document.getElementById('dialogueDiv').style.visibility = "hidden";
+  document.getElementById('dialogDiv').style.visibility = "hidden";
+  document.getElementById('buttonDiv').style.visibility = "hidden";
+  document.getElementById('ctc').style.visibility = "hidden";
+  document.getElementById('sayText').innerHTML = "";
 }
 
 function quickEnding() {
@@ -1383,7 +1387,94 @@ function startSHangEarly() {
   }, 600000);
 }
 
-
+function wipe(direction, fileName) {
+  var img = $('<img id="wipe' + direction + '">'); //Equivalent: $(document.createElement('img'))
+  var bg;
+  img.attr('src', "images/wipeleft.png");
+  img.appendTo('#novelDiv');
+  if(direction == "right") {
+    img.attr("style", "z-index: 101; position: absolute; width: 250px; height: 100%; left: 0px; -webkit-transform: scaleX(1); transform: scaleX(1);");
+  }
+  else if(direction == "left") {
+    img.attr("style", "z-index: 101; position: absolute; width: 250px; height: 100%; left: 100%; -webkit-transform: scaleX(-1); transform: scaleX(-1);");
+  }
+  var div = $('<div id="wipe' + direction + 'Div">');
+  div.appendTo("#novelDiv");
+  div.attr("style", "position: absolute; width: 0px; height: 658px; border: 1px solid rgba(0, 0, 0, .2); background: #000;");
+  novel.paused = true;
+  if(direction == "right") {
+  $('#wiperight').animate({
+      left: '100%'
+    }, { duration: 500, easing: "linear", queue: false, complete: function() {
+            novel.backgroundImage[novel.activeBG] = fileName;
+            bg = document.getElementById("background" + novel.activeBG);
+            bg.src = novel.imagePath + fileName;
+            novel.pendingBackgroundImage = bg;
+      setTimeout(function() {
+        $('#wiperight').css("left", "-250px");
+        $('#wiperight').css("transform", "scaleX(-1)");
+        $('#wiperight').animate({
+          left: '100%'
+        }, { duration: 700, queue: false, easing: "linear", complete: function() {
+            setTimeout(function() {
+            showDialog("visible");
+              setTimeout(function() {
+                novel.paused = false;
+                playNovel();
+                $('#wiperight').remove();
+                $('#wiperightDiv').remove();
+              }, 100);
+            }, 100);
+         }});
+        $('#wiperightDiv').animate({
+          left: '100%'
+        }, { duration: 700, easing: "linear", queue: false});
+      }, 700);
+    }});
+    $('#wiperightDiv').animate({
+      width: '100%'
+    }, { duration: 500, easing: "linear", queue: false});
+    return;
+  }
+  else if(direction == "left") {
+    console.log("left direction");
+  $('#wipeleftDiv').css("width", "100%");
+  $('#wipeleftDiv').css("left", "100%");
+  $('#wipeleft').css("left", "100%");
+  $('#wipeleft').animate({
+      left: '0%'
+    }, { duration: 700, easing: "linear", queue: false, complete: function() {
+            novel.backgroundImage[novel.activeBG] = fileName;
+            bg = document.getElementById("background" + novel.activeBG);
+            bg.src = novel.imagePath + fileName;
+            novel.pendingBackgroundImage = bg;
+      setTimeout(function() {
+        $('#wipeleft').css("left", "100%");
+        $('#wipeleft').css("transform", "scaleX(1)");
+        $('#wipeleft').animate({
+          left: '0%'
+        }, { duration: 700, queue: false, easing: "linear", complete: function() {
+            setTimeout(function() {
+            showDialog("visible");
+            setTimeout(function() {
+                novel.paused = false;
+                playNovel();
+                $('#wipeleft').remove();
+                $('#wipeleftDiv').remove();
+              }, 100);
+            }, 100);
+         }});
+        $('#wipeleftDiv').animate({
+          left: '-100%'
+        }, { duration: 700, easing: "linear", queue: false});
+      }, 1000);
+    }});
+    $('#wipeleftDiv').animate({
+      left: '0%'
+    }, { duration: 700, easing: "linear", queue: false});
+    return;
+  }
+}
 
 /*
     If the parameter was a string, it's the name of a background
@@ -1428,6 +1519,14 @@ function novel_changeBackground(param, clearAll) {
     novel.backgroundImage[novel.activeBG] = fileName;
     novel.paused = true;
     novel_fadeBgOut(targetAlpha);
+  } else if (effect == "wiperight") {
+    console.log("wiperight");
+    hideDialogue();
+    wipe("right", fileName);
+  } else if (effect == "wipeleft") {
+    console.log("wipeleft");
+    hideDialogue();
+    wipe("left", fileName);
   } else if (effect == "dissolve") {
     novel.backgroundImage[1 - novel.activeBG] = fileName;
     novel.pendingBackgroundImage = document.getElementById("background" + (1 - novel.activeBG));

@@ -3,8 +3,8 @@
     to be pre-loaded.
 */
 var preload = [
-  "images/club.png", "images/class.png", "images/corridor.png", "images/sayoriveryhappy.png", "images/noise1.png", "images/noise2.png", "images/noise3.png", "images/noise4.png", "images/sayoriveryworryhandsup.png", "images/sayoriworrymouthclosedhandsdown.png", "images/monhappy.png", "images/residential.png", "images/sayorifrantic.png", "images/namebox.png", "images/textbox.png", "images/sayoriworrymouthclosed.png", "images/sayoriworryhandsdown.png", "images/monikanormal.png", "images/yurionehandmouthclosedeyesclosed.png",
-  "images/monikaleanworry.png", "images/natsukiarmcrosslooktosidemouthclosed.png", "images/natsukiturnawayopeneyes.png", "images/natsukislightmouthonehip.png", "images/sayorifrowneyfinger.png", "images/sayorinormal.png", "images/sayoriclosedeyessmile.png", "images/sayorihappyonehandup.png", "images/sayorilookleftshy.png", "images/sayoriveryhappyeyesclosedhandsup.png", "images/sayorifrowneyfingerlookleft.png", "images/sayorinervousfingerlookleft.png", "images/yurinormal.png", "images/natsukislightmouthhip.png", "images/monikahappymouthclosedarmsdown.png",
+  "images/wipeleft.png", "images/club.png", "images/class.png", "images/corridor.png", "images/sayoriveryhappy.png", "images/noise1.png", "images/noise2.png", "images/noise3.png", "images/noise4.png", "images/sayoriveryworryhandsup.png", "images/sayoriworrymouthclosedhandsdown.png", "images/monhappy.png", "images/residential.png", "images/sayorifrantic.png", "images/namebox.png", "images/textbox.png", "images/sayoriworrymouthclosed.png", "images/sayoriworryhandsdown.png", "images/monikanormal.png", "images/yurionehandmouthclosedeyesclosed.png",
+  "images/monikaleanworry.png", "images/sayoririghthanduphappy.png", "images/sayoriopensmilehandsdown.png", "images/natsukiarmcrosslooktosidemouthclosed.png", "images/natsukiturnawayopeneyes.png", "images/natsukislightmouthonehip.png", "images/sayorifrowneyfinger.png", "images/sayorinormal.png", "images/sayoriclosedeyessmile.png", "images/sayorihappyonehandup.png", "images/sayorilookleftshy.png", "images/sayoriveryhappyeyesclosedhandsup.png", "images/sayorifrowneyfingerlookleft.png", "images/sayorinervousfingerlookleft.png", "images/yurinormal.png", "images/natsukislightmouthhip.png", "images/monikahappymouthclosedarmsdown.png",
 ];
 
 /*
@@ -165,7 +165,7 @@ function prepareNovel() {
     n, "More than that, I'm surprised I even let myself relent to her.",
     n, "I guess seeing her worry so much about me makes me want to ease her mind at least a little bit - even if she does exaggerate everything inside of her head.",
     sayori, {visibility: "hidden"},
-    background, "class.png",
+    background, {image: "class.png", effect: 'wiperight'},
     n, "The school day is as ordinary as ever, and it's over before I know it.",
     n, "After I pack up my things, I stare blankly at the wall, looking for an ounce of motivation.",
     player, "\"Clubs...\"",
@@ -212,7 +212,7 @@ function prepareNovel() {
     sayori, {position: middle},
     sayori, "\"Yes! Let's go~!\"",
     sayori, {visibility: "hidden"},
-    background, "corridor.png",
+    background, {image: "corridor.png", effect: 'wiperight'},
     audio, {
       action: "stop",
     },
@@ -220,7 +220,7 @@ function prepareNovel() {
     n, "I dejectedly follow Sayori across the school and upstairs - a section of the school I rarely visit, being generally used for third-year classes and activities.",
     n, "Sayori, full of energy, swings open the classroom door.",
     sayori, {image: "sayorihappybothhandsup.png", position: offScreenLeft, visibility: "visible"},
-    background, "club.png",
+    background, {image: "club.png", effect: 'wiperight'},
     audio, {
       src: "dokidoki2",
       format: ["ogg", "wav", "mp3"],
@@ -277,6 +277,15 @@ function prepareNovel() {
     focusChar, "Natsuki",
     natsuki, {image: "natsukiarmcrosslooktosidemouthclosed.png"},
     natsuki, "\"Hmph.\"",
+    focusChar, "none",
+    n, "The girl with the sour attitude, whose name is apparently Natsuki, is one I don't recognize.",
+    n, "Her small figure makes me think she's probably a first-year.",
+    n, "She is also the one who made cupcakes, according to Sayori.",
+    sayori, {image: "sayoririghthanduphappy.png", position: farLeftSide, visibility: "visible"},
+    sayori, "\"You can just ignore her when she gets moody~\"",
+    n, "Sayori says that quietly into my ear, then turns back toward the other girls.",
+    sayori, {image: "sayoriopensmilehandsdown.png"},
+    sayori, "\"Anyway! This is Natsuki, always full of energy.\"",
     
     label, "Quick",
     audio, {
