@@ -15,12 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 var skip = false;
+var inputArea;
+var gameLoaded = false;
 var refreshIntervalId;
 var animatingSay = false;
 var isQuickEnding = false;
 var shouldOverflow = "hidden";
 var isGlitchText = "sayText";
 var charFocused = null;
+var playerName = "MC";
 var images = [],
   x = -1;
 images[0] = "url('images/noise1.jpg')";
@@ -173,8 +176,8 @@ Character.prototype.finishDisplay = function(param, displayImage) {
       xPos -= Math.floor(pos.xAnchor * this.image.width);
       yPos -= Math.floor(pos.yAnchor * this.image.height);
       el.style.position = "absolute";
-      if(el.style.visibility == "hidden") {
-        if(this.visibility=="visible") {
+      if (el.style.visibility == "hidden") {
+        if (this.visibility == "visible") {
           $("#" + el.id).finish();
           el.style.left = xPos + 25 + "px";
           el.style.top = yPos + "px";
@@ -196,15 +199,20 @@ Character.prototype.finishDisplay = function(param, displayImage) {
             left: xPos + "px",
             width: el.width + 50,
             height: el.height + 50
-          }, { duration: 400, queue: false, easing: "linear", complete: function() {
-            console.log("animated size");
-            console.log(el.width + " + " + el.height);
-            el.style.visibility = "visible";
-          }});
+          }, {
+            duration: 400,
+            queue: false,
+            easing: "linear",
+            complete: function() {
+              console.log("animated size");
+              console.log(el.width + " + " + el.height);
+              el.style.visibility = "visible";
+            }
+          });
         }
-      } 
-      if(el.style.visibility == "visible") {
-        if(this.visibility=="hidden") {
+      }
+      if (el.style.visibility == "visible") {
+        if (this.visibility == "hidden") {
           $("#" + el.id).finish();
           $("#" + el.id).fadeTo("500", 0);
           el.style.left = xPos - 15 + "px";
@@ -217,13 +225,18 @@ Character.prototype.finishDisplay = function(param, displayImage) {
             left: xPos + 15 + "px",
             width: el.width - 50,
             height: el.height - 50
-          }, { duration: 400, queue: false, easing: "linear", complete: function() {
-            console.log("animated size");
-            console.log(el.width + " + " + el.height);
-            el.style.visibility = "hidden";
-            $("#" + el.id).width(oldWidth);
-            $("#" + el.id).height(oldHeight);
-          }});
+          }, {
+            duration: 400,
+            queue: false,
+            easing: "linear",
+            complete: function() {
+              console.log("animated size");
+              console.log(el.width + " + " + el.height);
+              el.style.visibility = "hidden";
+              $("#" + el.id).width(oldWidth);
+              $("#" + el.id).height(oldHeight);
+            }
+          });
         }
       }
       console.log(el.id);
@@ -235,9 +248,9 @@ Character.prototype.finishDisplay = function(param, displayImage) {
       });
       /*el.style.left = xPos + "px";
       el.style.top = yPos + "px";*/
-      if(el.style.visibility != "visible") {
-        if(this.visibility !="hidden") {
-      el.style.visibility = this.visibility;
+      if (el.style.visibility != "visible") {
+        if (this.visibility != "hidden") {
+          el.style.visibility = this.visibility;
         }
       }
       el.style.zIndex = this.zindex;
@@ -310,14 +323,14 @@ Character.prototype.say = function(str) {
     str = str.replace(/{{(.*?)}}/g, novel_interpolator);
   }
   htmlStr += "<div id='sayDiv'><p id='" + isGlitchText + "' style='overflow: " + shouldOverflow;
-  if(shouldOverflow == "visible") {
+  if (shouldOverflow == "visible") {
     htmlStr += "; white-space:pre";
   }
   htmlStr += ";'>" + str;
   htmlStr += "</p></div><div id='ctc'></div>"
   novel.dialog.innerHTML = htmlStr;
   novel.paused = true;
-  if(shouldOverflow == "hidden"){
+  if (shouldOverflow == "hidden") {
     replaceWithSpan();
     animateSay1();
   }
@@ -1171,9 +1184,9 @@ function scene(param) {
 }
 
 function countLines() {
-  if(isGlitchText=="glitchText") {
+  if (isGlitchText == "glitchText") {
     var ps = document.getElementById('glitchText');
-  } else if (isGlitchText=="sayText") {
+  } else if (isGlitchText == "sayText") {
     var ps = document.getElementById('sayText');
   }
   var lines = lineWrapDetector.getLines(ps);
@@ -1181,10 +1194,9 @@ function countLines() {
 }
 
 function replaceWithSpan() {
-  if(isGlitchText == "glitchText") {
+  if (isGlitchText == "glitchText") {
     var ps = document.getElementById('glitchText');
-  }
-  else if (isGlitchText == "sayText") {
+  } else if (isGlitchText == "sayText") {
     var ps = document.getElementById('sayText');
   }
   var ctc = document.getElementById('ctc');
@@ -1295,7 +1307,7 @@ function hideDialogue() {
 
 function quickEnding() {
   Cookies.set("quick", "now everyone can be happy.");
-  window.open('','_parent','');
+  window.open('', '_parent', '');
   window.close();
 }
 
@@ -1345,37 +1357,51 @@ function sKillEarlyAnimLoop() {
   }});*/
   $('#s_kill_early').animate({
     top: '-5px'
-  }, { duration: 10000, queue: false, complete: function() {
-    $('#s_kill_early').animate({
-      top: '0px'
-    }, { duration: 10000, queue: false, complete: function() {
-      sKillEarlyAnimLoop();
-    }})
-  }});
+  }, {
+    duration: 10000,
+    queue: false,
+    complete: function() {
+      $('#s_kill_early').animate({
+        top: '0px'
+      }, {
+        duration: 10000,
+        queue: false,
+        complete: function() {
+          sKillEarlyAnimLoop();
+        }
+      })
+    }
+  });
 }
 
 function rotateKillLeft() {
   console.log("rotate left");
   $("#s_kill_early").rotate({
-      duration:25000,
-      angle: -2,
-      animateTo:2,
-      callback: function() {rotateKillRight();},
+    duration: 25000,
+    angle: -2,
+    animateTo: 2,
+    callback: function() {
+      rotateKillRight();
+    },
   });
 }
 
 function rotateKillRight() {
   console.log("rotate right");
   $("#s_kill_early").rotate({
-      duration:25000,
-      angle: 0,
-      animateTo:-2,
-      callback: function() {rotateKillLeft();},
+    duration: 25000,
+    angle: 0,
+    animateTo: -2,
+    callback: function() {
+      rotateKillLeft();
+    },
   });
 }
 
 function startSHangEarly() {
   document.getElementById("end").innerHTML = "<div id='endbg'></div><img id='endText' src='images/happy.png'><img id='s_kill_early' src='images/s_kill_early.png'>";
+  document.getElementById('end').style.width = "1152px";
+  document.getElementById('end').style.height = "648px";
   document.getElementById('endbg').style.width = "1152px";
   document.getElementById('endbg').style.height = "648px";
   document.getElementById('endbg').style.opacity = 0.3;
@@ -1392,86 +1418,123 @@ function wipe(direction, fileName) {
   var bg;
   img.attr('src', "images/wipeleft.png");
   img.appendTo('#novelDiv');
-  if(direction == "right") {
+  if (direction == "right") {
     img.attr("style", "z-index: 101; position: absolute; width: 250px; height: 100%; left: 0px; -webkit-transform: scaleX(1); transform: scaleX(1);");
-  }
-  else if(direction == "left") {
+  } else if (direction == "left") {
     img.attr("style", "z-index: 101; position: absolute; width: 250px; height: 100%; left: 100%; -webkit-transform: scaleX(-1); transform: scaleX(-1);");
   }
   var div = $('<div id="wipe' + direction + 'Div">');
   div.appendTo("#novelDiv");
-  div.attr("style", "position: absolute; width: 0px; height: 658px; border: 1px solid rgba(0, 0, 0, .2); background: #000;");
+  div.attr("style", "position: absolute; width: 0px; height: 658px; border: 1px solid rgba(0, 0, 0, .2); background: #000; z-index: 101;");
   novel.paused = true;
-  if(direction == "right") {
-  $('#wiperight').animate({
+  novel.ignoreClicks = true;
+  if (direction == "right") {
+    $('#wiperight').animate({
       left: '100%'
-    }, { duration: 500, easing: "linear", queue: false, complete: function() {
-            novel.backgroundImage[novel.activeBG] = fileName;
-            bg = document.getElementById("background" + novel.activeBG);
-            bg.src = novel.imagePath + fileName;
-            novel.pendingBackgroundImage = bg;
-      setTimeout(function() {
-        $('#wiperight').css("left", "-250px");
-        $('#wiperight').css("transform", "scaleX(-1)");
-        $('#wiperight').animate({
-          left: '100%'
-        }, { duration: 700, queue: false, easing: "linear", complete: function() {
-            setTimeout(function() {
-            showDialog("visible");
+    }, {
+      duration: 500,
+      easing: "linear",
+      queue: false,
+      complete: function() {
+        novel.backgroundImage[novel.activeBG] = fileName;
+        bg = document.getElementById("background" + novel.activeBG);
+        bg.src = novel.imagePath + fileName;
+        novel.pendingBackgroundImage = bg;
+        setTimeout(function() {
+          $('#wiperight').css("left", "-250px");
+          $('#wiperight').css("transform", "scaleX(-1)");
+          $('#wiperight').animate({
+            left: '100%'
+          }, {
+            duration: 700,
+            queue: false,
+            easing: "linear",
+            complete: function() {
               setTimeout(function() {
-                novel.paused = false;
-                playNovel();
-                $('#wiperight').remove();
-                $('#wiperightDiv').remove();
+                showDialog("visible");
+                setTimeout(function() {
+                  novel.paused = false;
+                  novel.ignoreClicks = false;
+                  playNovel();
+                  $('#wiperight').remove();
+                  $('#wiperightDiv').remove();
+                }, 100);
               }, 100);
-            }, 100);
-         }});
-        $('#wiperightDiv').animate({
-          left: '100%'
-        }, { duration: 700, easing: "linear", queue: false});
-      }, 700);
-    }});
+            }
+          });
+          $('#wiperightDiv').animate({
+            left: '100%'
+          }, {
+            duration: 700,
+            easing: "linear",
+            queue: false
+          });
+        }, 700);
+      }
+    });
     $('#wiperightDiv').animate({
       width: '100%'
-    }, { duration: 500, easing: "linear", queue: false});
+    }, {
+      duration: 500,
+      easing: "linear",
+      queue: false
+    });
     return;
-  }
-  else if(direction == "left") {
+  } else if (direction == "left") {
     console.log("left direction");
-  $('#wipeleftDiv').css("width", "100%");
-  $('#wipeleftDiv').css("left", "100%");
-  $('#wipeleft').css("left", "100%");
-  $('#wipeleft').animate({
+    $('#wipeleftDiv').css("width", "100%");
+    $('#wipeleftDiv').css("left", "100%");
+    $('#wipeleft').css("left", "100%");
+    $('#wipeleft').animate({
       left: '0%'
-    }, { duration: 700, easing: "linear", queue: false, complete: function() {
-            novel.backgroundImage[novel.activeBG] = fileName;
-            bg = document.getElementById("background" + novel.activeBG);
-            bg.src = novel.imagePath + fileName;
-            novel.pendingBackgroundImage = bg;
-      setTimeout(function() {
-        $('#wipeleft').css("left", "100%");
-        $('#wipeleft').css("transform", "scaleX(1)");
-        $('#wipeleft').animate({
-          left: '0%'
-        }, { duration: 700, queue: false, easing: "linear", complete: function() {
-            setTimeout(function() {
-            showDialog("visible");
-            setTimeout(function() {
-                novel.paused = false;
-                playNovel();
-                $('#wipeleft').remove();
-                $('#wipeleftDiv').remove();
+    }, {
+      duration: 700,
+      easing: "linear",
+      queue: false,
+      complete: function() {
+        novel.backgroundImage[novel.activeBG] = fileName;
+        bg = document.getElementById("background" + novel.activeBG);
+        bg.src = novel.imagePath + fileName;
+        novel.pendingBackgroundImage = bg;
+        setTimeout(function() {
+          $('#wipeleft').css("left", "100%");
+          $('#wipeleft').css("transform", "scaleX(1)");
+          $('#wipeleft').animate({
+            left: '0%'
+          }, {
+            duration: 700,
+            queue: false,
+            easing: "linear",
+            complete: function() {
+              setTimeout(function() {
+                showDialog("visible");
+                setTimeout(function() {
+                  novel.paused = false;
+                  novel.ignoreClicks = false;
+                  playNovel();
+                  $('#wipeleft').remove();
+                  $('#wipeleftDiv').remove();
+                }, 100);
               }, 100);
-            }, 100);
-         }});
-        $('#wipeleftDiv').animate({
-          left: '-100%'
-        }, { duration: 700, easing: "linear", queue: false});
-      }, 1000);
-    }});
+            }
+          });
+          $('#wipeleftDiv').animate({
+            left: '-100%'
+          }, {
+            duration: 700,
+            easing: "linear",
+            queue: false
+          });
+        }, 1000);
+      }
+    });
     $('#wipeleftDiv').animate({
       left: '0%'
-    }, { duration: 700, easing: "linear", queue: false});
+    }, {
+      duration: 700,
+      easing: "linear",
+      queue: false
+    });
     return;
   }
 }
@@ -1755,9 +1818,8 @@ function novel_unPause() {
 }
 
 function skipToLine(line) {
-  for(var i=0; i < line * 2; i++){
-    playNovel();
-  }
+  novel.frame = line * 2;
+  playNovel();
 }
 
 /*
@@ -1848,31 +1910,92 @@ function initCookies() {
 
 function warnBadBrowser() {
   // Opera 8.0+
-var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+  var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
-// Firefox 1.0+
-var isFirefox = typeof InstallTrigger !== 'undefined';
+  // Firefox 1.0+
+  var isFirefox = typeof InstallTrigger !== 'undefined';
 
-// Safari 3.0+ "[object HTMLElementConstructor]" 
-var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+  // Safari 3.0+ "[object HTMLElementConstructor]" 
+  var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+  })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
-// Internet Explorer 6-11
-var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  // Internet Explorer 6-11
+  var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 
-// Edge 20+
-var isEdge = !isIE && !!window.StyleMedia;
+  // Edge 20+
+  var isEdge = !isIE && !!window.StyleMedia;
 
-// Chrome 1+
-var isChrome = !!window.chrome && !!window.chrome.webstore;
+  // Chrome 1+
+  var isChrome = !!window.chrome && !!window.chrome.webstore;
 
-// Blink engine detection
-var isBlink = (isChrome || isOpera) && !!window.CSS;
-  if(!isChrome) {
-    alert("HOL' UP!\nFAM THIS SITE AINT FINNA WORK IF U BE ON ANYTHIN OTHER THAN CHROME! \n\nHere is the browsers that have been tested:\n\nChrome: Working, main browser\nSafari: Not working, strange jquery bugs\nAll others: untested.\n\nIf you don't care and want to continue anyway, select continue.");
+  // Blink engine detection
+  var isBlink = (isChrome || isOpera) && !!window.CSS;
+  if (!isChrome && !isFirefox) {
+    alert("HOL' UP!\nFAM THIS SITE AINT FINNA WORK IF U BE ON ANYTHIN OTHER THAN CHROME! \n\nHere are the browsers that have been tested:\n\nChrome: Working, main browser\nFirefox: Working... mostly. ALSO cookies are hard to find.\nMac Safari: Not working, strange jquery bugs\niOS Safari: Mostly working. Clicks are slow because of normal iOS functionality.\nAll others: untested.\n\nIf you don't care and want to continue anyway, select continue.");
+  } else {
+    console.log("user is running a compatible browser");
   }
-  else {
-    console.log("is chrome");
+}
+
+function startGame() {
+  inputArea = new Input('yourName', {
+    position: new Position(0.2, 0.5),
+    width: 0.5,
+    text: "",
+    text2: "Please enter your name"
+  });
+  showNameInput();
+}
+
+function nameInput() {
+  var whiteBG = document.createElement("div");
+  whiteBG.id = "whiteBG";
+  whiteBG.style.background = "white";
+  whiteBG.style.opacity = "0.3";
+  whiteBG.style.pointerEvents = "none";
+  var inputArea = document.createElement("div");
+  inputArea.id = "inputDiv";
+  inputArea.style.pointerEvents = "auto";
+  var name = document.createElement("input");
+  name.id = "yourName";
+  name.classList.add('textClass');
+  name.className = "textClass";
+  name.style = "visibility: visible; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Aller; position: absolute;";
+  var confirm = document.createElement("button");
+  confirm.id = "confirm";
+  confirm.onclick = function() {
+    confirmName();
+  };
+  confirm.innerHTML = "OK";
+  var question = document.createElement("span");
+  question.id = "question";
+  question.innerHTML = "Please enter your name";
+  inputArea.appendChild(name);
+  inputArea.appendChild(confirm);
+  inputArea.appendChild(question);
+  document.getElementById("menuDiv").appendChild(whiteBG);
+  whiteBG.style.width = "100%";
+  whiteBG.style.height = "100%";
+  document.getElementById("menuDiv").style.pointerEvents = "none";
+  document.getElementById("menuDiv").appendChild(inputArea);
+  document.getElementById("yourName").focus();
+}
+
+function confirmName() {
+  var inputObj;
+  var str;
+  inputObj = document.getElementById("yourName");
+  str = inputObj.value;
+  if (str == "") {
+    return;
   }
+  str = str.replace(/&/g, '&amp;');
+  str = str.replace(/</g, '&lt;');
+  str = str.replace(/>/g, '&gt;');
+  playerName = str;
+  inputObj = null;
+  initNovel(1152, 648);
 }
 
 /*
@@ -2021,34 +2144,44 @@ function disableGlitch() {
 
 function focusChar(char) {
   console.log("focused");
-  if(char != "none") {
+  if (char != "none") {
     el = document.getElementById(char);
     var oPos = $("#" + el.id).position();
     var newX = 10;
-          $("#" + el.id).animate({
-            left: oPos.left - newX,
-            width: el.width + 10,
-            height: el.height + 10
-          }, { duration: 400, queue: false, easing: "linear", complete: function() {
-            console.log("animated size");
-            console.log(el.width + " + " + el.height);
-       }});
+    $("#" + el.id).animate({
+      left: oPos.left - newX,
+      width: el.width + 10,
+      height: el.height + 10
+    }, {
+      duration: 400,
+      queue: false,
+      easing: "linear",
+      complete: function() {
+        console.log("animated size");
+        console.log(el.width + " + " + el.height);
+      }
+    });
     charFocused = char;
     return;
   }
-  if(char=="none") {
-    if(charFocused != null || charFocused != "none") {
+  if (char == "none") {
+    if (charFocused != null || charFocused != "none") {
       el = document.getElementById(charFocused);
       var oPos = $("#" + el.id).position();
       var newX = 10;
       $("#" + el.id).animate({
-            left: oPos.left + newX,
-            width: el.width - 10,
-            height: el.height - 10
-       }, { duration: 400, queue: false, easing: "linear", complete: function() {
-            console.log("animated size");
-            console.log(el.width + " + " + el.height);
-       }});
+        left: oPos.left + newX,
+        width: el.width - 10,
+        height: el.height - 10
+      }, {
+        duration: 400,
+        queue: false,
+        easing: "linear",
+        complete: function() {
+          console.log("animated size");
+          console.log(el.width + " + " + el.height);
+        }
+      });
       charFocused = char;
       return;
     }

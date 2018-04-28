@@ -12,9 +12,17 @@ var preload = [
     Don't change it unless you know what you're doing.
 */
 var preloadObj = new Array(preload.length);
+var amountLoaded = 0;
 for (var i = 0; i < preload.length; i++) {
   preloadObj[i] = new Image();
   preloadObj[i].src = preload[i];
+  preloadObj[i].onload = function() {
+    console.log("asset loaded.");
+    amountLoaded++;
+  };
+  if(amountLoaded == preload.length) {
+    gameLoaded = true;
+  }
 }
 
 /* Declare variables for characters, positions, and text blocks here */
@@ -29,18 +37,11 @@ var leftSide;
 var rightSide;
 var upperCenter;
 var rightTop;
-var inputArea;
 
 /*
     This function must exist, and must have this name
 */
 function prepareNovel() {
-  inputArea = new Input('yourName', {
-    position: new Position(0.2, 0.5),
-    width: 0.5,
-    text: "",
-    text2: "Please enter your name"
-  });
   novel.imagePath = "images/"; // path to your image directory
   novel.audioPath = "audio/"; // path to your audio directory
 
@@ -62,9 +63,10 @@ function prepareNovel() {
     position: new Position(0.2, 0.69, 0, 0.5)
   });
   n = new Character("");
-  player = new Character("???", {
+  player = new Character("MC", {
     color: "#fff"
   });
+  player.name = playerName;
 
   offScreenLeft = new Position(-0.5, 0.69, 0, 0.5);
   farLeftSide = new Position(-0.1, 0.69, 0, 0.5);
@@ -76,9 +78,6 @@ function prepareNovel() {
   rightSide = new Position(0.5, 0.69, 0, 0.5);
   farRightSide = new Position(0.5, 0.69, 0, 0.5);
   rightSideDown = new Position(0.5, 0.70, 0, 0.5);
-
-  photo = new Character("");
-  lionText = new TextBlock("myText");
 
   // and put your script commands into this array
   script = [
@@ -93,13 +92,6 @@ function prepareNovel() {
       loop: true
     },
     scene, "residential.png",
-    inputArea, "",
-    jsCall, {
-      fcn: setPlayerName
-    },
-    setVars, {
-      playerName: novel.userVar.yourName
-    },
     jsCall, {
       fcn: setCharName,
       params: [sayori, "???"]
@@ -122,7 +114,7 @@ function prepareNovel() {
     player, "\"Maybe, but only because I decided to stop and wait for you.\"",
     sayori, {image: "sayorifrowneyfinger.png", position: middleDown},
     sayori, "\"Eeehhhhh, you say that like you were thinking about ignoring me!\"",
-    sayori, "\"That's mean, {{novel.userVar.yourName}}!\"",
+    sayori, "\"That's mean, {{playerName}}!\"",
     player, "\"Well, if people stare at you for acting weird then I don't want them to think we're a couple or something.\"",
     sayori, {image: "sayorinormal.png", position: middle},
     sayori, "\"Fine, fine.\"",
@@ -135,7 +127,7 @@ function prepareNovel() {
     player, "We cross the street together and make our way to school.",
     player, "As we draw near, the streets become increasingly speckled with other students making their daily commute.",
     sayori, {image: "sayorihappyonehandup.png", visibility: "visible"},
-    sayori, "\"By the way, {{novel.userVar.yourName}}...\"",
+    sayori, "\"By the way, {{playerName}}...\"",
     sayori, "\"Have you decided on a club to join yet?\"",
     player, "\"A club?\"",
     player, "\"I told you already, I'm really not interested in joining any clubs.\"",
@@ -255,7 +247,7 @@ function prepareNovel() {
       params: [monika, "Girl 3"]
     },
     monika, {image: "monikahappymouthclosedarmsdown.png", position: farLeftSide, zindex: "2", visibility: "visible"},
-    monika, "\"Ah, {{novel.userVar.yourName}}! What a nice surprise!\"",
+    monika, "\"Ah, {{playerName}}! What a nice surprise!\"",
     monika, "\"Welcome to the club!\"",
     monika, {image: "monikanormal.png"},
     player, "\"...\"",
@@ -286,6 +278,8 @@ function prepareNovel() {
     n, "Sayori says that quietly into my ear, then turns back toward the other girls.",
     sayori, {image: "sayoriopensmilehandsdown.png"},
     sayori, "\"Anyway! This is Natsuki, always full of energy.\"",
+    focusChar, "Yuri",
+    yuri, "\"D-Dont say things like that...\"",
     
     label, "Quick",
     audio, {
@@ -294,13 +288,6 @@ function prepareNovel() {
       action: "play"
     },
     scene, "residential.png",
-    inputArea, "",
-    jsCall, {
-      fcn: setPlayerName
-    },
-    setVars, {
-      playerName: novel.userVar.yourName
-    },
     sayori, {image: "sayoriveryworrymouthclosedhandsdown.png", position: middle, zindex: "1", visibility: "visible"},
     sayori, "\"...\"",
     sayori, "\"...\"",
@@ -321,11 +308,6 @@ function prepareNovel() {
       fcn: quickEnding
     },
   ];
-}
-
-function setPlayerName() {
-  novel.userVar.playerName = novel.userVar.yourName;
-  player.name = novel.userVar.yourName;
 }
 
 function setCharName(char, nameToChange) {

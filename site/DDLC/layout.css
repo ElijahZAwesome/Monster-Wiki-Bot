@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  touch-action: manipulation;
 }
 
 @font-face {
@@ -73,9 +74,13 @@ body {
   background-size: cover;
 }
   
-  #end {
-    overflow: hidden;
-  }
+#end {
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center;
+}
   
 #endText {
   position: absolute;
