@@ -3,9 +3,50 @@
     to be pre-loaded.
 */
 var preload = [
-  "images/wipeleft.png", "images/club.png", "images/class.png", "images/corridor.png", "images/sayoriveryhappy.png", "images/noise1.png", "images/noise2.png", "images/noise3.png", "images/noise4.png", "images/sayoriveryworryhandsup.png", "images/sayoriworrymouthclosedhandsdown.png", "images/monhappy.png", "images/residential.png", "images/sayorifrantic.png", "images/namebox.png", "images/textbox.png", "images/sayoriworrymouthclosed.png", "images/sayoriworryhandsdown.png", "images/monikanormal.png", "images/yurionehandmouthclosedeyesclosed.png",
-  "images/monikaleanworry.png", "images/sayoririghthanduphappy.png", "images/sayoriopensmilehandsdown.png", "images/natsukiarmcrosslooktosidemouthclosed.png", "images/natsukiturnawayopeneyes.png", "images/natsukislightmouthonehip.png", "images/sayorifrowneyfinger.png", "images/sayorinormal.png", "images/sayoriclosedeyessmile.png", "images/sayorihappyonehandup.png", "images/sayorilookleftshy.png", "images/sayoriveryhappyeyesclosedhandsup.png", "images/sayorifrowneyfingerlookleft.png", "images/sayorinervousfingerlookleft.png", "images/yurinormal.png", "images/natsukislightmouthhip.png", "images/monikahappymouthclosedarmsdown.png",
+  "images/wipeleft.png", 
+  "images/club.png",
+  "images/class.png", 
+  "images/corridor.png",
+  "images/noise1.png", 
+  "images/noise2.png", 
+  "images/noise3.png", 
+  "images/noise4.png", 
+  "images/monhappy.png", 
+  "images/residential.png", 
+  "images/namebox.png", 
+  "images/textbox.png", 
 ];
+var sayoriPreload = [
+  "images/sayoririghthanduphappy.png", 
+  "images/sayoriopensmilehandsdown.png", 
+  "images/sayoriveryworryhandsup.png", 
+  "images/sayoriworrymouthclosedhandsdown.png", 
+  "images/sayorifrowneyfinger.png", 
+  "images/sayorinormal.png", 
+  "images/sayoriclosedeyessmile.png", 
+  "images/sayorihappyonehandup.png", 
+  "images/sayorilookleftshy.png", 
+  "images/sayoriveryhappyeyesclosedhandsup.png", 
+  "images/sayorifrowneyfingerlookleft.png", 
+  "images/sayorinervousfingerlookleft.png", 
+  "images/sayorifrantic.png", 
+  "images/sayoriveryhappy.png", 
+];
+var yuriPreload = [
+  "images/yurinormal.png", 
+  "images/yurionehandmouthclosedeyesclosed.png",
+];
+var natsukiPreload = [
+  "images/natsukislightmouthhip.png", 
+  "images/natsukiarmcrosslooktosidemouthclosed.png", 
+  "images/natsukiturnawayopeneyes.png",
+  "images/natsukislightmouthonehip.png", 
+];
+var monikaPreload = [
+  "images/monikahappymouthclosedarmsdown.png",
+  "images/monikaleanworry.png", 
+  "images/monhappy.png", 
+]
 
 /*
     This section pre-loads your images.
@@ -17,18 +58,62 @@ for (var i = 0; i < preload.length; i++) {
   preloadObj[i] = new Image();
   preloadObj[i].src = preload[i];
   preloadObj[i].onload = function() {
-    console.log("asset loaded.");
     amountLoaded++;
   };
-  if(amountLoaded == preload.length) {
-    gameLoaded = true;
+}
+
+var sayoriPreloadObj = new Array(sayoriPreload.length);
+for (var i = 0; i < sayoriPreload.length; i++) {
+  sayoriPreloadObj[i] = new Image();
+  sayoriPreloadObj[i].src = sayoriPreload[i];
+  sayoriPreloadObj[i].onload = function() {
+    amountLoaded++;
+  };
+}
+
+var yuriPreloadObj = new Array(yuriPreload.length);
+for (var i = 0; i < yuriPreload.length; i++) {
+  yuriPreloadObj[i] = new Image();
+  yuriPreloadObj[i].src = yuriPreload[i];
+  yuriPreloadObj[i].onload = function() {
+    amountLoaded++;
+  };
+}
+
+var natsukiPreloadObj = new Array(natsukiPreload.length);
+for (var i = 0; i < natsukiPreload.length; i++) {
+  natsukiPreloadObj[i] = new Image();
+  natsukiPreloadObj[i].src = natsukiPreload[i];
+  natsukiPreloadObj[i].onload = function() {
+    amountLoaded++;
+  };
+}
+
+var monikaPreloadObj = new Array(monikaPreload.length);
+for (var i = 0; i < monikaPreload.length; i++) {
+  monikaPreloadObj[i] = new Image();
+  monikaPreloadObj[i].src = monikaPreload[i];
+  monikaPreloadObj[i].onload = function() {
+    amountLoaded++;
+  };
+  if(amountLoaded == preload.length + sayoriPreload.length + yuriPreload.length + natsukiPreload.length + monikaPreload.length) {
+    assetsLoaded();
   }
+}
+
+
+function assetsLoaded() {
+  gameLoaded = true;
+  preloadObj.find(k => k=='b');
 }
 
 /* Declare variables for characters, positions, and text blocks here */
 var script; // this variable will hold your script
 var monika;
 var natsuki;
+var sayori;
+var yuri;
+var player;
 var n; // short for "narrator"
 var photo;
 var textBlock;
@@ -48,19 +133,23 @@ function prepareNovel() {
   // initialize your characters, positions, and text blocks here
   natsuki = new Character("Natsuki", {
     color: "#fff",
-    position: new Position(0.2, 0.69, 0, 0.5)
+    position: new Position(0.2, 0.69, 0, 0.5),
+    visibility: "hidden"
   });
   monika = new Character("Monika", {
     color: "#fff",
-    position: new Position(0.2, 0.69, 0, 0.5)
+    position: new Position(0.2, 0.69, 0, 0.5),
+    visibility: "hidden"
   });
   yuri = new Character("Yuri", {
     color: "#fff",
-    position: new Position(0.2, 0.69, 0, 0.5)
+    position: new Position(0.2, 0.69, 0, 0.5),
+    visibility: "hidden"
   });
   sayori = new Character("Sayori", {
     color: "#fff",
-    position: new Position(0.2, 0.69, 0, 0.5)
+    position: new Position(0.2, 0.69, 0, 0.5),
+    visibility: "hidden"
   });
   n = new Character("");
   player = new Character("MC", {
@@ -107,7 +196,7 @@ function prepareNovel() {
       fcn: setCharName,
       params: [sayori, "Sayori"]
     },
-    sayori, {image: "sayorifrantic.png", position: middle, zindex: "1"},
+    sayori, {image: "sayorifrantic.png", position: middle, zindex: "1", visibility: "visible"},
     sayori, "\"Haaahhh...haaahhh...\"",
     sayori, "\"I overslept again!\"",
     sayori, "\"But I caught you this time!\"",

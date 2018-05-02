@@ -24,6 +24,8 @@ var shouldOverflow = "hidden";
 var isGlitchText = "sayText";
 var charFocused = null;
 var playerName = "MC";
+var base64image;
+var savedData;
 var images = [],
   x = -1;
 images[0] = "url('images/noise1.jpg')";
@@ -70,7 +72,7 @@ function Character(characterName) {
   this.position = new Position(0, 0, true);
   this.prevPosition = new Position(0, 0, true);
   this.alpha = 1.0;
-  this.visibility = "visible";
+  this.visibility = "hidden";
 
   /*
       If a second argument is given, it is an anonymous
@@ -1934,6 +1936,9 @@ function warnBadBrowser() {
   if (!isChrome && !isFirefox) {
     alert("HOL' UP!\nFAM THIS SITE AINT FINNA WORK IF U BE ON ANYTHIN OTHER THAN CHROME! \n\nHere are the browsers that have been tested:\n\nChrome: Working, main browser\nFirefox: Working... mostly. ALSO cookies are hard to find.\nMac Safari: Not working, strange jquery bugs\niOS Safari: Mostly working. Clicks are slow because of normal iOS functionality.\nAll others: untested.\n\nIf you don't care and want to continue anyway, select continue.");
   } else {
+    if(isFirefox) {
+      alert("While Firefox does work with this game, my testing has concluded that preloading is a bit weird, so take your experience with a grain of salt.");
+    }
     console.log("user is running a compatible browser");
   }
 }
@@ -1961,6 +1966,7 @@ function nameInput() {
   name.id = "yourName";
   name.classList.add('textClass');
   name.className = "textClass";
+  name.setAttribute("maxlength", "10");
   name.style = "visibility: visible; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Aller; position: absolute;";
   var confirm = document.createElement("button");
   confirm.id = "confirm";
@@ -1982,6 +1988,39 @@ function nameInput() {
   document.getElementById("yourName").focus();
 }
 
+function makePopup(context) {
+  var whiteBG = document.createElement("div");
+  whiteBG.id = "whiteBG";
+  whiteBG.style.background = "white";
+  whiteBG.style.opacity = "0.3";
+  whiteBG.style.pointerEvents = "none";
+  var popup = document.createElement("div");
+  popup.id = "popup";
+  popup.style.pointerEvents = "auto";
+  var confirm = document.createElement("button");
+  confirm.id = "confirm";
+  confirm.onclick = function() {
+    closePopup();
+  };
+  confirm.innerHTML = "OK";
+  var question = document.createElement("span");
+  question.id = "question";
+  question.innerHTML = context;
+  popup.appendChild(confirm);
+  popup.appendChild(question);
+  document.getElementById("menuDiv").appendChild(whiteBG);
+  whiteBG.style.width = "100%";
+  whiteBG.style.height = "100%";
+  document.getElementById("menuDiv").style.pointerEvents = "none";
+  document.getElementById("menuDiv").appendChild(popup);
+}
+
+function closePopup() {
+  $("#popup").remove();
+  document.getElementById("menuDiv").style.pointerEvents = "auto";
+  $("#whiteBG").remove();
+}
+
 function confirmName() {
   var inputObj;
   var str;
@@ -1996,6 +2035,145 @@ function confirmName() {
   playerName = str;
   inputObj = null;
   initNovel(1152, 648);
+}
+
+function quitGame() {
+  location.reload();
+}
+
+function openHelp() {
+  var win = window.open("./help/", '_blank');
+  win.focus();
+  makePopup('Help has been opened in a new browser tab.');
+}
+
+function pauseGame() {
+  /*document.getElementById("novelDiv").style.width = "0%";
+  document.getElementById("novelDiv").style.height = "0%";
+  dont need this anymore*/
+  document.getElementById("novelDiv").style.pointerEvents = "none";
+  document.getElementById("menuDiv").style.width = "1152px";
+  document.getElementById("menuDiv").style.height = "648px";
+  document.getElementById("menuDiv").style.pointerEvents = "auto";
+  document.getElementById("menuDiv").innerHTML = "<div id='pauseMenuButtons'><button id='history-btn' class='menubtn' onclick='historyMenu();'>History</button><button id='savegame-btn' class='menubtn' onclick='saveMenu();'>Save Game</button><button id='loadgame-btn' class='menubtn' onclick='loadMenu();'>Load Game</button><button id='mainmenu-btn' class='menubtn' onclick='quitGame();'>Main Menu</button><button id='settings-btn' class='menubtn' onclick='unpauseGame();'>Settings</button><button id='help-btn' class='menubtn' onclick='openHelp();'>Help</button><button id='quit-btn' class='menubtn' onclick='quitGame();'>Quit</button><br><br><button id='return-btn' class='menubtn' onclick='unpauseGame();'>Return</button></div><div id='menuInfo'></div><div id='menuBGDiv'><div id='menubg'></div><img id='sector' src='images/sector.png'></div>";
+  $("#history-btn").click(function() {
+    if($("#history-btn").hasClass("menubtn-clicked")) {
+      $("#history-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#history-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#savegame-btn").click(function() {
+    if($("#savegame-btn").hasClass("menubtn-clicked")) {
+      document.getElementById("menuInfo").innerHTML = "";
+      $("#savegame-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#savegame-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#loadgame-btn").click(function() {
+    if($("#loadgame-btn").hasClass("menubtn-clicked")) {
+      document.getElementById("menuInfo").innerHTML = "";
+      $("#loadgame-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#loadgame-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#mainmenu-btn").click(function() {
+    if($("#mainmenu-btn").hasClass("menubtn-clicked")) {
+      $("#mainmenu-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#mainmenu-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#settings-btn").click(function() {
+    if($("#settings-btn").hasClass("menubtn-clicked")) {
+      $("#settings-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#settings-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#help-btn").click(function() {
+    if($("#help-btn").hasClass("menubtn-clicked")) {
+      $("#help-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#help-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#quit-btn").click(function() {
+    if($("#quit-btn").hasClass("menubtn-clicked")) {
+      $("#quit-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#quit-btn").addClass('menubtn-clicked');
+    }
+  });
+  $("#return-btn").click(function() {
+    if($("#return-btn").hasClass("menubtn-clicked")) {
+      $("#return-btn").removeClass('menubtn-clicked');
+    } else {
+      $(".menubtn").removeClass('menubtn-clicked');
+      $("#return-btn").addClass('menubtn-clicked');
+    }
+  });
+}
+
+function unpauseGame() {
+  document.getElementById("novelDiv").style.width = "1152px";
+  document.getElementById("novelDiv").style.height = "648px";
+  document.getElementById("novelDiv").style.pointerEvents = "auto";
+  document.getElementById("menuDiv").style.width = "0%";
+  document.getElementById("menuDiv").style.height = "0%";
+  document.getElementById("menuDiv").innerHTML = "";
+  document.getElementById("menuDiv").style.pointerEvents = "none";
+}
+
+function historyMenu() {
+  // blank
+}
+
+function saveMenu() {
+  if($("#savegame-btn").hasClass("menubtn-clicked")) {
+    document.getElementById("menuInfo").innerHTML = "";
+  }
+  document.getElementById("menuInfo").innerHTML = "<p id='menuInfoTitleText'>Save Game</p><div class='saveSlot' id='saveSlot1' onclick='saveGame(1);'><p id='saveSlotText1' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot2' onclick='saveGame(2);'><p id='saveSlotText2' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot3' onclick='saveGame(3);'><p id='saveSlotText3' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot4' onclick='saveGame(4);'><p id='saveSlotText4' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot5' onclick='saveGame(5);'><p id='saveSlotText5' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot6' onclick='saveGame(6);'><p id='saveSlotText6' class='saveSlotText'>empty slot</p></div>";
+  for (var i = 0; i < localStorage.length; i++){
+    if(JSON.parse(localStorage.getItem(localStorage.key(i))).Player) {
+      var loadedData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      $("#saveSlot" + (i + 1)).css("background-image", "url('" + loadedData.Screenshot + "')");
+      $("#saveSlot" + (i + 1)).css("background-size", "contain");
+      document.getElementById("saveSlotText" + (i + 1)).innerHTML = loadedData.Date;
+      loadedData = null;
+    }
+  }
+}
+
+function loadMenu() {
+  if($("#loadgame-btn").hasClass("menubtn-clicked")) {
+    document.getElementById("menuInfo").innerHTML = "";
+  }
+  document.getElementById("menuInfo").innerHTML = "<p id='menuInfoTitleText'>Load Game</p><div class='saveSlot' id='saveSlot1' onclick='loadGame(1);'><p id='saveSlotText1' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot2' onclick='loadGame(2);'><p id='saveSlotText2' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot3' onclick='loadGame(3);'><p id='saveSlotText3' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot4' onclick='loadGame(4);'><p id='saveSlotText4' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot5' onclick='loadGame(5);'><p id='saveSlotText5' class='saveSlotText'>empty slot</p></div><div class='saveSlot' id='saveSlot6' onclick='loadGame(6);'><p id='saveSlotText6' class='saveSlotText'>empty slot</p></div>";
+  for (var i = 0; i < localStorage.length; i++){
+    if(JSON.parse(localStorage.getItem(localStorage.key(i))).Player) {
+      var loadedData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      $("#saveSlot" + (i + 1)).css("background-image", "url('" + loadedData.Screenshot + "')");
+      $("#saveSlot" + (i + 1)).css("background-size", "contain");
+      document.getElementById("saveSlotText" + (i + 1)).innerHTML = loadedData.Date;
+      loadedData = null;
+    }
+  }
+}
+
+function loadFromMenu() {
+  // An algorithm to find the latest save will eventually go here.
+  initNovel(1152, 648);
+  loadGame(1);
 }
 
 /*
@@ -2036,13 +2214,18 @@ function initNovel(w, h) {
   novel_disableSelection(document.body);
   novel = new Novel();
   document.getElementById("menuDiv").innerHTML = "";
-  document.getElementById("menuDiv").id = "menuDivDisabled";
+  document.getElementById("menuDiv").style.width = "0%";
+  document.getElementById("menuDiv").style.height = "0%";
   novel.tableau = document.getElementById("novelDiv");
   novel.tableau.style.visibility = "visible";
   novel.dialog = document.getElementById("dialogDiv");
   if (novel.tableau.addEventListener) {
     novel.tableau.addEventListener('click', novel_handleClick, false);
     novel.dialog.addEventListener('click', novel_handleClick, false);
+    $(".btn").click(function(e) {
+      e.stopPropagation();
+      e.stopPropagation();
+    });
   } else if (novel.tableau.attachEvent) {
     novel.tableau.attachEvent('onclick', novel_handleClick);
     novel.dialog.attachEvent('onclick', novel_handleClick);
@@ -2186,6 +2369,129 @@ function focusChar(char) {
       return;
     }
   }
+}
+
+function saveGame(savenum) {
+    document.getElementById('saveSlotText' + savenum).innerHTML = "Saving...";
+    savedData = {
+      Player: playerName,
+      SayoriName: sayori.name,
+      YuriName: yuri.name,
+      MonikaName: monika.name,
+      NatsukiName: natsuki.name,
+      SayoriVisible: sayori.visibility,
+      NatsukiVisible: natsuki.visibility,
+      MonikaVisible: monika.visibility,
+      YuriVisible: yuri.visibility,
+      SayoriPosition: sayori.position,
+      NatsukiPosition: natsuki.position,
+      MonikaPosition: monika.position,
+      YuriPosition: yuri.position,
+      SayoriZindex: sayori.zindex,
+      NatsukiZindex: natsuki.zindex,
+      MonikaZindex: monika.zindex,
+      YuriZindex: yuri.zindex,
+      IsQuickEnding: isQuickEnding,
+      CharFocused: charFocused,
+      SceneBG: novel.backgroundImage,
+      Frame: novel.frame,
+      Date: moment().format('MMMM Do YYYY, h:mm:ss a')
+    };
+    if($('#Sayori').length) {
+      var srcToSave = $('#Sayori').attr('src');
+      srcToSave = srcToSave.replace(window.location.href + "images/", "");
+      savedData.SayoriImage = srcToSave;
+    }
+    if($('#Natsuki').length) {
+      var srcToSave = $('#Natsuki').attr('src');
+      srcToSave = srcToSave.replace(window.location.href + "images/", "");
+      savedData.NatsukiImage = srcToSave;
+    }
+    if($('#Monika').length) {
+      var srcToSave = $('#Monika').attr('src');
+      srcToSave = srcToSave.replace(window.location.href + "images/", "");
+      savedData.MonikaImage = srcToSave;
+    }
+    if($('#Yuri').length) {
+      var srcToSave = $('#Yuri').attr('src');
+      srcToSave = srcToSave.replace(window.location.href + "images/", "");
+      savedData.YuriImage = srcToSave;
+    }
+    html2canvas(document.getElementById("novelDiv"), {scale: 0.3}).then(function(canvas) {
+      // Export the canvas to its data URI representation
+      base64image = canvas.toDataURL('images/png');
+      savedData.Screenshot = base64image;
+      eval('localStorage.savedata' + savenum + " = " + "JSON.stringify(savedData)");
+      $('#saveSlot' + savenum).css("background-image", "url('" + base64image + "')");
+      $('#saveSlot' + savenum).css("background-size", "contain");
+      document.getElementById('saveSlotText' + savenum).innerHTML = savedData.Date;
+    });
+}
+
+function loadGame(savenum) {
+    if(!eval('localStorage.' + 'savedata' + savenum)) {
+      makePopup("There is nothing saved here!");
+      return;
+    }
+    var loadedData = JSON.parse(eval('localStorage.' + 'savedata' + savenum) || "{}");
+    console.log(loadedData);
+    sayori.name = loadedData.SayoriName;
+    natsuki.name = loadedData.NatsukiName;
+    monika.name = loadedData.MonikaName;
+    yuri.name = loadedData.YuriName;
+    player.name = loadedData.Player;
+    playerName = loadedData.Player;
+    if(loadedData.SayoriImage) {
+      sayori.display({image: loadedData.SayoriImage, visibility: loadedData.SayoriVisible});
+    }
+    if(loadedData.NatsukiImage) {
+      natsuki.display({image: loadedData.NatsukiImage, visibility: loadedData.NatsukiVisible});
+    }
+    if(loadedData.MonikaImage) {
+      monika.display({image: loadedData.MonikaImage, visibility: loadedData.MonikaVisible});
+    }
+    if(loadedData.YuriImage) {
+      yuri.display({image: loadedData.YuriImage, visibility: loadedData.YuriVisible});
+    }
+    if(document.getElementById("Sayori")) {
+      document.getElementById("Sayori").style.visibility = loadedData.SayoriVisible;
+      sayori.visibility = loadedData.SayoriVisible;
+      if(loadedData.SayoriVisible == "visible") {
+        document.getElementById("Sayori").style.opacity = "1";
+      } else if (loadedData.SayoriVisible == "hidden") {
+        document.getElementById("Sayori").style.opacity = "0";
+      }
+    }
+    if(document.getElementById("Natsuki")) {
+      document.getElementById("Natsuki").style.visibility = loadedData.NatsukiVisible;
+      natsuki.visibility = loadedData.NatsukiVisible;
+      if(loadedData.NatsukiVisible == "visible") {
+        document.getElementById("Natsuki").style.opacity = "1";
+      } else if (loadedData.NatsukiVisible == "hidden") {
+        document.getElementById("Natsuki").style.opacity = "0";
+      }
+    }
+    if(document.getElementById("Monika")) {
+      document.getElementById("Monika").style.visibility = loadedData.MonikaVisible;
+      monika.visibility = loadedData.MonikaVisible;
+      if(loadedData.MonikaVisible == "visible") {
+        document.getElementById("Monika").style.opacity = "1";
+      } else if (loadedData.MonikaVisible == "hidden") {
+        document.getElementById("Monika").style.opacity = "0";
+      }
+    }
+    if(document.getElementById("Yuri")) {
+      document.getElementById("Yuri").style.visibility = loadedData.YuriVisible;
+      yuri.visibility = loadedData.YuriVisible;
+      if(loadedData.YuriVisible == "visible") {
+        document.getElementById("Yuri").style.opacity = "1";
+      } else if (loadedData.YuriVisible == "hidden") {
+        document.getElementById("Yuri").style.opacity = "0";
+      }
+    }
+    novel_changeBackground(loadedData.SceneBG[0], false);
+    unpauseGame();
+    novel.frame = loadedData.Frame - 2;
 }
 
 /*

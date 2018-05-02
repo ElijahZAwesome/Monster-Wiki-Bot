@@ -36,9 +36,11 @@ body {
   border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
+  position: absolute;
   text-align: center;
   overflow: hidden;
+  top: 9px;
+  z-index: -3;
 }
 
 #disclaimer {
@@ -73,7 +75,7 @@ body {
   opacity: 0;
   background-size: cover;
 }
-  
+
 #end {
   overflow: hidden;
   margin-left: auto;
@@ -81,7 +83,7 @@ body {
   position: relative;
   text-align: center;
 }
-  
+
 #endText {
   position: absolute;
   top: 300px;
@@ -101,33 +103,6 @@ body {
   font-family: "Aller";
   color: white;
   text-shadow: -1px -1px 1px #161616, 1px -1px 1px #161616, -1px 1px 1px #161616, 1px 1px 1px #161616;
-  /*text-shadow: 1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000,
-    0px 1px 0 #000,
-    0px -1px 0 #000,
-    -1px 0px 0 #000,
-    1px 0px 0 #000,
-    2px 2px 0 #000,
-    -2px 2px 0 #000,
-    2px -2px 0 #000,
-    -2px -2px 0 #000,
-    0px 2px 0 #000,
-    0px -2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000,
-    1px 2px 0 #000,
-    -1px 2px 0 #000,
-    1px -2px 0 #000,
-    -1px -2px 0 #000,
-    2px 1px 0 #000,
-    -2px 1px 0 #000,
-    2px -1px 0 #000,
-    -2px -1px 0 #000;
-  text-shadow: 0 0 2px #000; *//* horizontal-offset vertical-offset 'blur' colour */
-  /*-moz-text-shadow: 0 0 2px #000;
-  -webkit-text-shadow: 0 0 2px #000;*/
   font-size: 24px;
   position: absolute;
   z-index: 100;
@@ -191,15 +166,27 @@ body {
   font-size: 20px;
   position: absolute;
   z-index: 100;
-  width: 100%;
+  width: 90%;
   height: 50px;
   top: 13%;
-  left: 0%;
+  left: 2%;
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 7px;
   text-align: center;
   overflow: visible;
+}
+
+#menuInfoTitleText {
+  font-family: "Aller";
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 80px;
+  z-index: 100;
+  width: 100%;
+  padding: 7px;
+  text-align: center;
 }
 
 #confirm:hover {
@@ -221,62 +208,13 @@ body {
   left: 0;
   overflow: hidden;
 }
-  
+
 #glitchText {
   position: relative;
   top: -20px;
   left: 0;
   overflow: hidden;
-  text-shadow:
-  -1px -1px 0 #000,
-  1px -1px 0 #000,
-  -1px 1px 0 #000,
-  1px 1px 0 #000,
-
-  -2px -2px 0 #000,
-  2px -2px 0 #000,
-  -2px 2px 0 #000,
-  2px 2px 0 #000,
-
-  -3px -3px 0 #000,
-  3px -3px 0 #000,
-  -3px 3px 0 #000,
-  3px 3px 0 #000,
-  
-  -4px -4px 0 #000,
-  4px -4px 0 #000,
-  -4px 4px 0 #000,
-  4px 4px 0 #000,
-  
-  -4px -4px 0 #000,
-  4px -4px 0 #000,
-  -4px 4px 0 #000,
-  4px 4px 0 #000,
-  
-  -16px -16px 0 #000,
-  16px -16px 0 #000,
-  -16px 16px 0 #000,
-  16px 16px 0 #000,
-  
-  -17px -17px 0 #000,
-  17px -17px 0 #000,
-  -17px 17px 0 #000,
-  17px 17px 0 #000,
-  
-  -18px -18px 0 #000,
-  18px -18px 0 #000,
-  -18px 18px 0 #000,
-  18px 18px 0 #000,
-  
-  -19px -19px 0 #000,
-  19px -19px 0 #000,
-  -19px 19px 0 #000,
-  19px 19px 0 #000,
-  
-  -20px -8px 0 #000,
-  20px -8px 0 #000,
-  -2px 8px 0 #000,
-  20px 8px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, -16px -16px 0 #000, 16px -16px 0 #000, -16px 16px 0 #000, 16px 16px 0 #000, -17px -17px 0 #000, 17px -17px 0 #000, -17px 17px 0 #000, 17px 17px 0 #000, -18px -18px 0 #000, 18px -18px 0 #000, -18px 18px 0 #000, 18px 18px 0 #000, -19px -19px 0 #000, 19px -19px 0 #000, -19px 19px 0 #000, 19px 19px 0 #000, -20px -8px 0 #000, 20px -8px 0 #000, -2px 8px 0 #000, 20px 8px 0 #000;
 }
 
 #saySpan1 {
@@ -315,7 +253,7 @@ body {
   height: 80px;
   top: 490px;
   left: 0;
-  padding: 7px;
+  padding: 2px;
   padding-top: 9%;
   text-align: center;
   border: none;
@@ -327,6 +265,7 @@ body {
   font-size: 15px;
   border: none;
   background: none;
+  padding: 1px;
 }
 
 /* On mouse-over */
@@ -427,10 +366,22 @@ body {
   text-shadow: -2px -2px 0 #ffb7f7, 2px -2px 0 #ffb7f7, -2px 2px 0 #ffb7f7, 2px 2px 0 #ffb7f7;
 }
 
+.menubtn-clicked {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: -2px -2px 0 #ffb7f7, 2px -2px 0 #ffb7f7, -2px 2px 0 #ffb7f7, 2px 2px 0 #ffb7f7;
+}
+
 #menuButtons {
   position: absolute;
   left: 0px;
   top: 0px;
+  height: 100%;
+}
+
+#pauseMenuButtons {
+  position: absolute;
+  left: 0px;
+  top: -80px;
   height: 100%;
 }
 
@@ -479,6 +430,19 @@ body {
   left: 35%;
 }
 
+#popup {
+  background-image: url('images/frame.png');
+  width: 25%;
+  height: 30%;
+  font-family: "Aller";
+  font-size: 18px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
 #ctc {
   position: absolute;
   left: 790px;
@@ -508,6 +472,34 @@ body {
   font-size: 18px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+}
+
+#menuInfo {
+  text-align: left;
+  position: absolute;
+  width: 857px;
+  left: 295px;
+  height: 100%;
+  display: inline-block;
+}
+
+.saveSlot {
+  position: relative;
+  width: 240px;
+  height: 136px;
+  left: 30px;
+  top: 100px;
+  margin-left: 25px;
+  margin-top: 60px;
+  background-color: #ECB7E5;
+  display: inline-block;
+}
+
+.saveSlotText {
+  font-family: "Aller";
+  position: relative;
+  top: 90%;
+  text-align: center;
 }
 
 div.menuItem:hover {
