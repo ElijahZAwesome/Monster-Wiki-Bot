@@ -34,13 +34,14 @@ body {
   width: 1152px;
   height: 648px;
   border: 1px solid black;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   position: absolute;
   text-align: center;
   overflow: hidden;
   top: 9px;
   z-index: -3;
+  left: 0px;
+  right: 0px;
 }
 
 #disclaimer {
